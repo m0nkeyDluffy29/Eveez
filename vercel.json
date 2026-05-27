@@ -6,14 +6,10 @@
   },
   "functions": {
     "api/server.js": {
-      "runtime": "nodejs20.x"
+      "runtime": "nodejs@20.x"
     }
   },
   "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/server.js"
-    },
     {
       "source": "/(.*)",
       "destination": "/api/server.js"
