@@ -1,0 +1,22 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist/client",
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "functions": {
+    "api/server.js": {
+      "runtime": "nodejs20.x"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/server.js"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/api/server.js"
+    }
+  ]
+}
