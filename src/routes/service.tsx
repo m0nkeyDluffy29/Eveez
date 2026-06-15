@@ -2,12 +2,17 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { SectionShell } from "@/components/SectionShell";
 import { Wrench, ShieldCheck, Clock, Headphones } from "lucide-react";
+import FooterSection from "@/components/FooterSection";
 
 export const Route = createFileRoute("/service")({
   head: () => ({
     meta: [
       { title: "Service — EVeez" },
-      { name: "description", content: "An always-on care ecosystem for every EVeez rider — diagnostics, doorstep service, and assurance." },
+      {
+        name: "description",
+        content:
+          "An always-on care ecosystem for every EVeez rider — diagnostics, doorstep service, and assurance.",
+      },
     ],
   }),
   component: ServicePage,
@@ -31,18 +36,24 @@ function ServicePage() {
         ].map((s, i) => (
           <motion.div
             key={s.l}
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 * i, duration: 0.6 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.05 * i, duration: 0.6 }}
             className="glass rounded-2xl p-6"
           >
             <s.I className="h-5 w-5 text-[var(--ev-orange)]" />
             <div className="mt-3 text-3xl font-semibold">{s.v}</div>
-            <div className="text-xs uppercase tracking-[0.18em] text-muted-foreground">{s.l}</div>
+            <div className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+              {s.l}
+            </div>
           </motion.div>
         ))}
       </div>
 
       <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.2 }}
         className="mt-6 glass rounded-2xl p-6"
       >
         <div className="flex items-center gap-3">
@@ -55,7 +66,9 @@ function ServicePage() {
           {steps.map((s, i) => (
             <motion.div
               key={s.t}
-              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 + i * 0.12 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 + i * 0.12 }}
               className="relative rounded-xl border border-border bg-white/5 p-5"
             >
               <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[var(--ev-orange)] text-background text-xs font-bold">
@@ -67,6 +80,9 @@ function ServicePage() {
           ))}
         </div>
       </motion.div>
+      <div className="mt-20">
+        <FooterSection />
+      </div>
     </SectionShell>
   );
 }

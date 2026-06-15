@@ -29,10 +29,14 @@ export const Route = createFileRoute("/landing")({
         content:
           "Affordable EV subscriptions for riders. Scalable fleet opportunities for franchise partners across India.",
       },
-      { property: "og:title", content: "EVeez — Powering India's Gig Mobility" },
+      {
+        property: "og:title",
+        content: "EVeez — Powering India's Gig Mobility",
+      },
       {
         property: "og:description",
-        content: "Subscribe to an EV. Or own a franchise. Built for India's gig economy.",
+        content:
+          "Subscribe to an EV. Or own a franchise. Built for India's gig economy.",
       },
     ],
   }),
@@ -100,7 +104,9 @@ function Navbar() {
           <span className="relative inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#FF6A1A] to-[#16A34A] text-white font-bold shadow-lg shadow-orange-500/20">
             E
           </span>
-          <span className="font-display text-lg tracking-tight text-neutral-900">EVeez</span>
+          <span className="font-display text-lg tracking-tight text-neutral-900">
+            EVeez
+          </span>
         </Link>
         <nav className="hidden md:flex items-center gap-1">
           {links.map(([l, h]) => (
@@ -158,8 +164,18 @@ function Hero() {
           xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
-            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="black" strokeWidth="0.5" />
+            <pattern
+              id="grid"
+              width="40"
+              height="40"
+              patternUnits="userSpaceOnUse"
+            >
+              <path
+                d="M 40 0 L 0 0 0 40"
+                fill="none"
+                stroke="black"
+                strokeWidth="0.5"
+              />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#grid)" />
@@ -174,8 +190,8 @@ function Hero() {
           className="max-w-3xl"
         >
           <span className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 backdrop-blur px-3 py-1 text-xs font-medium text-neutral-700">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> India's gig-first EV
-            platform
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> India's
+            gig-first EV platform
           </span>
           <h1 className="mt-5 text-4xl sm:text-5xl lg:text-7xl font-semibold leading-[1.05] tracking-tight text-neutral-900">
             Powering India's{" "}
@@ -184,8 +200,8 @@ function Hero() {
             </span>
           </h1>
           <p className="mt-5 max-w-2xl text-lg text-neutral-600">
-            Affordable EV subscriptions for riders. Scalable fleet opportunities for franchise
-            partners.
+            Affordable EV subscriptions for riders. Scalable fleet opportunities
+            for franchise partners.
           </p>
         </motion.div>
 
@@ -229,13 +245,16 @@ function Hero() {
               >
                 {c.icon}
               </div>
-              <p className="mt-4 text-xs uppercase tracking-[0.18em] text-neutral-500">{c.tag}</p>
+              <p className="mt-4 text-xs uppercase tracking-[0.18em] text-neutral-500">
+                {c.tag}
+              </p>
               <h3 className="mt-1 text-2xl lg:text-3xl font-semibold text-neutral-900">
                 {c.title}
               </h3>
               <p className="mt-2 text-neutral-600">{c.desc}</p>
               <div className="mt-6 inline-flex items-center gap-2 font-medium text-neutral-900">
-                {c.cta} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                {c.cta}{" "}
+                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
               </div>
             </motion.a>
           ))}
@@ -260,8 +279,9 @@ function FranchiseSection() {
               Start Your <span className="text-[#FF6A1A]">EVeez Franchise</span>
             </h2>
             <p className="mt-4 text-neutral-600 text-lg">
-              Tap into India's exploding EV demand with a turnkey fleet model. Recurring rider
-              subscriptions, full operational support, and a brand riders trust.
+              Tap into India's exploding EV demand with a turnkey fleet model.
+              Recurring rider subscriptions, full operational support, and a
+              brand riders trust.
             </p>
             <ul className="mt-6 space-y-3">
               {[
@@ -274,7 +294,8 @@ function FranchiseSection() {
                     <ShieldCheck className="h-4 w-4" />
                   </span>
                   <p className="text-neutral-700">
-                    <span className="font-medium text-neutral-900">{t}</span> — {d}
+                    <span className="font-medium text-neutral-900">{t}</span> —{" "}
+                    {d}
                   </p>
                 </li>
               ))}
@@ -290,18 +311,30 @@ function FranchiseSection() {
               }}
               className="rounded-3xl bg-white border border-black/5 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.2)] p-7 lg:p-9"
             >
-              <h3 className="text-xl font-semibold text-neutral-900">Request franchise details</h3>
+              <h3 className="text-xl font-semibold text-neutral-900">
+                Request franchise details
+              </h3>
               <p className="text-sm text-neutral-500 mt-1">
                 Our team reaches out within 24 hours.
               </p>
               <div className="mt-6 grid gap-4">
                 {[
-                  { label: "Full Name", type: "text", placeholder: "Aarav Sharma" },
+                  {
+                    label: "Full Name",
+                    type: "text",
+                    placeholder: "Aarav Sharma",
+                  },
                   { label: "City", type: "text", placeholder: "Bengaluru" },
-                  { label: "Phone Number", type: "tel", placeholder: "+91 98765 43210" },
+                  {
+                    label: "Phone Number",
+                    type: "tel",
+                    placeholder: "+91 98765 43210",
+                  },
                 ].map((f) => (
                   <div key={f.label}>
-                    <label className="text-sm font-medium text-neutral-700">{f.label}</label>
+                    <label className="text-sm font-medium text-neutral-700">
+                      {f.label}
+                    </label>
                     <input
                       type={f.type}
                       required
@@ -311,7 +344,9 @@ function FranchiseSection() {
                   </div>
                 ))}
                 <div>
-                  <label className="text-sm font-medium text-neutral-700">Investment Range</label>
+                  <label className="text-sm font-medium text-neutral-700">
+                    Investment Range
+                  </label>
                   <select
                     required
                     defaultValue=""
@@ -495,12 +530,14 @@ function TestimonialsSection() {
     {
       name: "Imran Khan",
       city: "Delhi",
-      quote: "I save almost ₹6,000 a month on fuel. The weekly plan fits my gig schedule perfectly.",
+      quote:
+        "I save almost ₹6,000 a month on fuel. The weekly plan fits my gig schedule perfectly.",
     },
     {
       name: "Anjali Verma",
       city: "Hyderabad",
-      quote: "Quiet, smooth, and the support team actually picks up. Riding has never felt this good.",
+      quote:
+        "Quiet, smooth, and the support team actually picks up. Riding has never felt this good.",
     },
   ];
 
@@ -530,7 +567,10 @@ function TestimonialsSection() {
               : "bg-gradient-to-br from-[#16A34A] to-[#22C55E]"
           }`}
         >
-          {name.split(" ").map((n) => n[0]).join("")}
+          {name
+            .split(" ")
+            .map((n) => n[0])
+            .join("")}
         </div>
         <div>
           <p className="font-medium text-neutral-900">{name}</p>
@@ -595,9 +635,10 @@ function AboutSection() {
             </span>
           </h2>
           <p className="mt-5 text-neutral-600 text-lg">
-            EVeez makes electric mobility effortless. Riders subscribe to a ready-to-go EV on
-            simple weekly plans. Entrepreneurs run city fleets through our franchise model. Every
-            ride cuts fuel costs and emissions.
+            EVeez makes electric mobility effortless. Riders subscribe to a
+            ready-to-go EV on simple weekly plans. Entrepreneurs run city fleets
+            through our franchise model. Every ride cuts fuel costs and
+            emissions.
           </p>
           <div className="mt-7 grid sm:grid-cols-3 gap-4">
             {[
@@ -605,7 +646,10 @@ function AboutSection() {
               ["Franchise", "Own a city node"],
               ["Sustain", "Cleaner mobility"],
             ].map(([t, d]) => (
-              <div key={t} className="rounded-2xl border border-black/5 bg-white p-4">
+              <div
+                key={t}
+                className="rounded-2xl border border-black/5 bg-white p-4"
+              >
                 <p className="font-semibold text-neutral-900">{t}</p>
                 <p className="text-sm text-neutral-500 mt-1">{d}</p>
               </div>
@@ -621,12 +665,15 @@ function AboutSection() {
               </div>
               <div>
                 <p className="font-semibold text-neutral-900">Our mission</p>
-                <p className="text-sm text-neutral-500">Sustainable mobility, empowered work</p>
+                <p className="text-sm text-neutral-500">
+                  Sustainable mobility, empowered work
+                </p>
               </div>
             </div>
             <p className="mt-6 text-neutral-700 leading-relaxed">
-              We exist so every gig worker in India can earn more, ride cleaner, and own their
-              future — and so every entrepreneur has a real path into the EV economy.
+              We exist so every gig worker in India can earn more, ride cleaner,
+              and own their future — and so every entrepreneur has a real path
+              into the EV economy.
             </p>
             <div className="mt-6 grid grid-cols-3 gap-3">
               {[
@@ -660,19 +707,31 @@ function ContactSection() {
             We'd love to hear from you
           </h2>
           <p className="mt-4 text-neutral-600 text-lg">
-            Questions about subscriptions, franchise opportunities, or partnerships? Reach out.
+            Questions about subscriptions, franchise opportunities, or
+            partnerships? Reach out.
           </p>
           <div className="mt-8 space-y-4">
             {[
-              { i: <Phone className="h-5 w-5" />, l: "+91 80 4567 8900", s: "Mon–Sat, 9am–7pm" },
-              { i: <Mail className="h-5 w-5" />, l: "hello@eveez.in", s: "We reply in 24h" },
+              {
+                i: <Phone className="h-5 w-5" />,
+                l: "+91 80 4567 8900",
+                s: "Mon–Sat, 9am–7pm",
+              },
+              {
+                i: <Mail className="h-5 w-5" />,
+                l: "hello@eveez.in",
+                s: "We reply in 24h",
+              },
               {
                 i: <MapPin className="h-5 w-5" />,
                 l: "12, Indiranagar, Bengaluru 560038",
                 s: "HQ India",
               },
             ].map((c) => (
-              <div key={c.l} className="flex items-start gap-4 rounded-2xl bg-white border border-black/5 p-4">
+              <div
+                key={c.l}
+                className="flex items-start gap-4 rounded-2xl bg-white border border-black/5 p-4"
+              >
                 <div className="h-11 w-11 shrink-0 rounded-xl bg-gradient-to-br from-[#FF6A1A] to-[#16A34A] text-white flex items-center justify-center">
                   {c.i}
                 </div>
@@ -697,7 +756,9 @@ function ContactSection() {
           onSubmit={(e) => e.preventDefault()}
           className="rounded-3xl bg-white border border-black/5 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.2)] p-7 lg:p-9"
         >
-          <h3 className="text-xl font-semibold text-neutral-900">Send us a message</h3>
+          <h3 className="text-xl font-semibold text-neutral-900">
+            Send us a message
+          </h3>
           <div className="mt-6 grid gap-4">
             {[
               { l: "Name", t: "text", p: "Your name" },
@@ -705,7 +766,9 @@ function ContactSection() {
               { l: "Phone", t: "tel", p: "+91 ..." },
             ].map((f) => (
               <div key={f.l}>
-                <label className="text-sm font-medium text-neutral-700">{f.l}</label>
+                <label className="text-sm font-medium text-neutral-700">
+                  {f.l}
+                </label>
                 <input
                   type={f.t}
                   required
@@ -715,7 +778,9 @@ function ContactSection() {
               </div>
             ))}
             <div>
-              <label className="text-sm font-medium text-neutral-700">Message</label>
+              <label className="text-sm font-medium text-neutral-700">
+                Message
+              </label>
               <textarea
                 required
                 rows={4}
@@ -749,8 +814,8 @@ function FooterBlock() {
             <span className="font-display text-lg text-white">EVeez</span>
           </div>
           <p className="mt-4 text-sm text-neutral-400">
-            Powering India's gig mobility with affordable electric subscriptions and a scalable
-            franchise network.
+            Powering India's gig mobility with affordable electric subscriptions
+            and a scalable franchise network.
           </p>
         </div>
         {[
@@ -800,7 +865,8 @@ function FooterBlock() {
             ))}
           </div>
           <p className="mt-6 text-xs text-neutral-500">
-            © {new Date().getFullYear()} EVeez Mobility Pvt Ltd. All rights reserved.
+            © {new Date().getFullYear()} EVeez Mobility Pvt Ltd. All rights
+            reserved.
           </p>
         </div>
       </div>
