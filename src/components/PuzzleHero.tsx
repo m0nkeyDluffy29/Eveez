@@ -245,8 +245,8 @@ export default function PuzzleHero() {
       <div
         className="pointer-events-none absolute bottom-0 right-0 z-0"
         style={{
-          width: "55vw",
-          height: "55vh",
+          width: "85vw",
+          height: "85vh",
           background:
             "radial-gradient(ellipse at bottom right, oklch(0.55 0.18 36 / 0.55) 0%, oklch(0.4 0.15 36 / 0.25) 40%, transparent 70%)",
         }}
@@ -278,7 +278,7 @@ export default function PuzzleHero() {
           {/* center: nav links */}
           <nav className="hidden md:flex flex-1 justify-center items-center gap-8">
             <a
-              href="#franchise"
+              href="/franchise"
               className="text-sm text-white/80 hover:text-white transition"
             >
               Franchise
@@ -290,25 +290,25 @@ export default function PuzzleHero() {
               Fast Charging
             </a>
             <a
-              href="#service"
+              href="/service"
               className="text-sm text-white/80 hover:text-white transition"
             >
               Service
             </a>
             <a
-              href="#tech-stack"
+              href="/tech-stack"
               className="text-sm text-white/80 hover:text-white transition"
             >
               Tech Stack
             </a>
             <a
-              href="#vehicle-rd"
+              href="/vehicle-rd"
               className="text-sm text-white/80 hover:text-white transition"
             >
               Vehicle R&D
             </a>
             <a
-              href="#training"
+              href="/training"
               className="text-sm text-white/80 hover:text-white transition"
             >
               Training Programmes
@@ -338,7 +338,7 @@ export default function PuzzleHero() {
             transition={{ duration: 0.6 }}
             className="relative z-20 mx-auto max-w-3xl px-6 pt-10 text-center"
           >
-            <h1 className="mt-5 text-5xl md:text-7xl font-semibold leading-[1.02]">
+            <h1 className="mt-5 text-5xl md:text-6xl font-semibold leading-[1.02]">
               Mobility for <span className="text-gradient-ev">Livelihoods</span>
             </h1>
             <p className="mt-4 text-base md:text-lg text-muted-foreground">
