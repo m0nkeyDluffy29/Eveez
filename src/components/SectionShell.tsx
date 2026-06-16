@@ -93,9 +93,9 @@ export function SectionShell({
           <div className="flex items-center">
             <button
               onClick={() => router.history.back()}
-              className="text-sm text-white/80 hover:text-white transition"
+              className="ml-4 inline-flex items-center rounded-full bg-[#FF6A1A] px-4 py-2 text-sm font-semibold text-black shadow-sm hover:bg-[#ea5b0c] transition"
             >
-              ← Back
+              Become a Partner
             </button>
           </div>
         </div>

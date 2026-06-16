@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { SectionShell } from "@/components/SectionShell";
 import { Store, MapPin, TrendingUp, Users } from "lucide-react";
 import FooterSection from "@/components/FooterSection";
-
+import franchiseImage from "../../assets/images/Franchise Growth Map.png";
 export const Route = createFileRoute("/franchise")({
   head: () => ({
     meta: [
@@ -82,7 +82,7 @@ function FranchisePage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="bg-neutral-900 border border-neutral-800 rounded-2xl p-6 relative overflow-hidden"
+          className="rounded-2xl p-6 relative overflow-hidden"
         >
           <div className="text-xs uppercase tracking-[0.25em] text-neutral-400 mb-4">
             Growth Map
@@ -90,36 +90,18 @@ function FranchisePage() {
           <h3 className="text-2xl font-semibold mb-6">
             Where EVeez is plugging in
           </h3>
-          <div className="relative aspect-[16/10] w-full rounded-xl border border-neutral-700 bg-[radial-gradient(ellipse_at_center,oklch(0.22_0.03_255),oklch(0.14_0.02_250))] overflow-hidden">
-            {/* faux contour grid */}
-            <div className="absolute inset-0 grid-lines opacity-50" />
-            {cities.map((c, i) => (
-              <motion.div
-                key={c.name}
-                initial={{ scale: 0, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{
-                  delay: 0.2 + i * 0.08,
-                  type: "spring",
-                  stiffness: 200,
-                }}
-                style={{ left: `${c.x}%`, top: `${c.y}%` }}
-                className="absolute -translate-x-1/2 -translate-y-1/2"
-              >
-                <div className="relative">
-                  <span
-                    className={`block h-3 w-3 rounded-full ${c.hot ? "bg-orange-500" : "bg-green-500"}`}
-                  />
-                  {c.hot && (
-                    <span className="absolute inset-0 rounded-full bg-orange-500 pulse-ring" />
-                  )}
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[10px] uppercase tracking-widest text-neutral-400 whitespace-nowrap">
-                    {c.name}
-                  </span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="rounded-2xl overflow-hidden"
+          >
+            <img
+              src={franchiseImage}
+              alt="EVeez Franchise"
+              className="w-full h-full object-cover rounded-2xl"
+            />
+          </motion.div>
         </motion.div>
       </div>
       <div className="mt-20">
