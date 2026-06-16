@@ -43,6 +43,9 @@
   /* Blended dark+light premium aesthetic */
   --background: oklch(0.16 0.02 250);
   --foreground: oklch(0.98 0.005 250);
+  --background-secondary: oklch(0.1647 0.0042 285.94);
+  --background-primary: oklch(0.1876 0.004 286.01);
+  --footer-text: oklch(0.8318 0.046 35.15);
 
   --card: oklch(0.22 0.025 255 / 0.5);
   --card-foreground: oklch(0.98 0.005 250);
@@ -68,8 +71,9 @@
   --ev-orange: oklch(0.74 0.19 55);
   --ev-green: oklch(0.78 0.18 152);
   --ev-glow: oklch(0.95 0.05 90);
-
-  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --ev-blue:
+    oklch(0.8173 0.1313 221.24) --font-display: "Space Grotesk", ui-sans-serif,
+    system-ui, sans-serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 

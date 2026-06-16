@@ -67,52 +67,54 @@ export default function NewsMediaCoverage() {
   }, [carouselApi, isPaused]);
 
   return (
-    <section className="mx-auto max-w-7xl px-6 py-20 text-white">
-      <div className="max-w-3xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-white">
-          News & Media Coverage
-        </h2>
-        <p className="mt-3 text-base text-neutral-400">
-          EVEEZ has been featured across leading business, startup, mobility,
-          and industry publications.
-        </p>
-      </div>
+    <div style={{ backgroundColor: "oklch(0.1876 0.004 286.01)" }}>
+      <section className="mx-auto max-w-7xl px-6 py-20 text-white ">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-white">
+            News & Media Coverage
+          </h2>
+          <p className="mt-3 text-base text-neutral-400">
+            EVEEZ has been featured across leading business, startup, mobility,
+            and industry publications.
+          </p>
+        </div>
 
-      <div
-        className="relative mt-12"
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-      >
-        <Carousel
-          opts={{
-            align: "start",
-            containScroll: "trimSnaps",
-            loop: false,
-          }}
-          setApi={setCarouselApi}
+        <div
+          className="relative mt-12"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
         >
-          <CarouselContent className="gap-4">
-            {slides.map((slide, slideIndex) => (
-              <CarouselItem key={slideIndex}>
-                <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-                  {slide.map((partner) => (
-                    <div
-                      key={partner.name}
-                      className="flex h-24 items-center justify-center"
-                    >
-                      <img
-                        src={partner.logo}
-                        alt={partner.name}
-                        className="h-10 w-auto object-contain"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
-      </div>
-    </section>
+          <Carousel
+            opts={{
+              align: "start",
+              containScroll: "trimSnaps",
+              loop: false,
+            }}
+            setApi={setCarouselApi}
+          >
+            <CarouselContent className="gap-4">
+              {slides.map((slide, slideIndex) => (
+                <CarouselItem key={slideIndex}>
+                  <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+                    {slide.map((partner) => (
+                      <div
+                        key={partner.name}
+                        className="flex h-24 items-center justify-center"
+                      >
+                        <img
+                          src={partner.logo}
+                          alt={partner.name}
+                          className="h-10 w-auto object-contain"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+        </div>
+      </section>
+    </div>
   );
 }

@@ -9,17 +9,17 @@ export default function FooterSection() {
             <p className="text-xl font-semibold tracking-[0.3em] text-orange-500">
               EVeez
             </p>
-            <p className="mt-5 max-w-md text-sm leading-7 text-neutral-400">
+            <p className="mt-5 max-w-md text-sm leading-7 text-[var(--footer-text)]">
               Accelerating India's transition to sustainable electric mobility
               through full-stack hardware and software innovation.
             </p>
           </div>
 
           <div>
-            <p className="text-[11px] uppercase tracking-[0.28em] text-neutral-400">
+            <p className="text-[11px] uppercase tracking-[0.28em] text-[var(--footer-text)]">
               Platform
             </p>
-            <ul className="mt-5 space-y-3 text-sm text-white">
+            <ul className="mt-5 space-y-3 text-sm text-[var(--footer-text)]">
               <li>Ecosystem</li>
               <li>Vehicle Specs</li>
               <li>Tech Stack</li>
@@ -27,10 +27,10 @@ export default function FooterSection() {
           </div>
 
           <div>
-            <p className="text-[11px] uppercase tracking-[0.28em] text-neutral-400">
+            <p className="text-[11px] uppercase tracking-[0.28em] text-[var(--footer-text)]">
               Company
             </p>
-            <ul className="mt-5 space-y-3 text-sm text-white">
+            <ul className="mt-5 space-y-3 text-sm text-[var(--footer-text)]">
               <li>About Us</li>
               <li>Press Kit</li>
               <li>Contact Us</li>
@@ -38,7 +38,7 @@ export default function FooterSection() {
           </div>
 
           <div>
-            <p className="text-[11px] uppercase tracking-[0.28em] text-neutral-400">
+            <p className="text-[11px] uppercase tracking-[0.28em] text-[var(--footer-text)]">
               Connect
             </p>
             <div className="mt-5 flex items-center gap-3">

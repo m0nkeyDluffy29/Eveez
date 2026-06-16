@@ -73,7 +73,7 @@ export function SectionShell({
             <img
               src="../../assets/icons/eveez-logo.png"
               alt="EVeez"
-              className="h-8 w-auto object-contain"
+              className="h-10 w-auto object-contain"
               loading="lazy"
             />
           </Link>
@@ -101,8 +101,8 @@ export function SectionShell({
         </div>
       </header>
 
-      <main className="relative mx-auto max-w-7xl px-6 py-16">
-        <div className="mb-12">
+      <main className="relative mx-auto max-w-7xl px-6">
+        <div className="mb-12 mt-12">
           <div
             className="inline-flex items-center gap-2 rounded-full border border-border glass px-3 py-1 text-xs uppercase tracking-[0.2em]"
             style={{ color: v.accent }}

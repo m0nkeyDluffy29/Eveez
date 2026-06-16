@@ -135,7 +135,7 @@ export default function EnvironmentalImpact() {
   return (
     <section
       ref={(el) => (rootRef.current = el)}
-      className="mx-auto max-w-7xl px-6 py-20"
+      className="mx-auto max-w-7xl px-6 py-20 bg"
     >
       <div className="max-w-3xl mx-auto text-center">
         <div className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground">

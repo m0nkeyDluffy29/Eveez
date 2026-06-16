@@ -234,9 +234,25 @@ export default function PuzzleHero() {
     <div
       ref={containerRef}
       className="relative min-h-screen overflow-hidden bg-neutral-950"
+      style={{
+        backgroundImage: `
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)
+    `,
+        backgroundSize: "40px 40px",
+      }}
     >
+      <div
+        className="pointer-events-none absolute bottom-0 right-0 z-0"
+        style={{
+          width: "55vw",
+          height: "55vh",
+          background:
+            "radial-gradient(ellipse at bottom right, oklch(0.55 0.18 36 / 0.55) 0%, oklch(0.4 0.15 36 / 0.25) 40%, transparent 70%)",
+        }}
+      />
       {/* Top nav (in-hero) */}
-      <header className="relative z-30 border-b-2 border-orange">
+      <header className="relative z-30 border-b-2 border-orange bg-neutral-950">
         <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
           {/* left: logo */}
           <a href="/" className="flex items-center gap-2">
@@ -254,7 +270,7 @@ export default function PuzzleHero() {
             <img
               src="../../assets/icons/eveez-logo.png"
               alt="EVeez"
-              className="h-8 w-auto object-contain"
+              className="h-10 w-auto object-contain"
               loading="lazy"
             />
           </a>
