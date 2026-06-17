@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { SectionShell } from "@/components/SectionShell";
+import { SectionShell, VERTICALS } from "@/components/SectionShell";
 import { Wrench } from "lucide-react";
 import FooterSection from "@/components/FooterSection";
 import serviceImage from "../../assets/images/Service-Ecosystem.png";
@@ -20,6 +20,8 @@ export const Route = createFileRoute("/service")({
 });
 
 function ServicePage() {
+  const v = VERTICALS["service"];
+
   const steps = [
     { t: "Detect", d: "On-vehicle telematics flag anomalies in real time." },
     { t: "Dispatch", d: "Nearest service node receives a smart work-order." },
@@ -34,15 +36,32 @@ function ServicePage() {
   ];
 
   return (
-    <SectionShell vertical="service">
+    <SectionShell vertical="service" hideHero>
       <div className="grid lg:grid-cols-2 gap-12 items-start">
-        {/* Left: stats + care loop */}
+        {/* Left: tag + title + stats + care loop */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7 }}
           className="flex flex-col gap-6"
         >
+          {/* Pill tag */}
+          <div
+            className="inline-flex items-center gap-2 w-fit rounded-full border border-white/10 px-3 py-1 text-xs uppercase tracking-[0.2em]"
+            style={{ color: v.accent }}
+          >
+            <span
+              className="h-1.5 w-1.5 rounded-full"
+              style={{ background: v.accent }}
+            />
+            {v.tag}
+          </div>
+
+          {/* Page title */}
+          <h1 className="text-3xl md:text-4xl font-semibold leading-snug text-white">
+            {v.pageTitle} – <span className="text-white">{v.tagline}</span>
+          </h1>
+
           {/* Stats row */}
           <div className="grid grid-cols-3 gap-3">
             {stats.map((s, i) => (
@@ -111,6 +130,7 @@ function ServicePage() {
           />
         </motion.div>
       </div>
+
       <div className="mt-20">
         <FooterSection />
       </div>

@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import ebs from "../../assets/icons/eveez-business-standard.png";
 import ys from "../../assets/icons/eveez--youtuber.png";
 import ent from "../../assets/icons/eveez-entracker.png";
@@ -18,33 +19,57 @@ const partners = [
   { name: "SME street", logo: sme },
 ];
 
+// Duplicate for seamless loop
+const doubled = [...partners, ...partners];
+
 export default function NewsMediaCoverage() {
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    let x = 0;
+    let raf: number;
+
+    const tick = () => {
+      x -= 0.5;
+      // Reset when first half scrolled out
+      if (Math.abs(x) >= track.scrollWidth / 2) x = 0;
+      track.style.transform = `translateX(${x}px)`;
+      raf = requestAnimationFrame(tick);
+    };
+
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
   return (
     <div style={{ backgroundColor: "oklch(0.1876 0.004 286.01)" }}>
-      <section className="mx-auto max-w-7xl px-6 py-20 text-white">
-        <div className="max-w-3xl mx-auto text-center">
+      <section className="mx-auto max-w-7xl px-6 py-16 text-white">
+        {/* Heading */}
+        <div className="max-w-3xl mx-auto text-center mb-10">
           <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-white">
             News & Media Coverage
           </h2>
-          <p className="mt-3 text-base text-neutral-400">
+          <p className="mt-2 text-base text-neutral-400">
             EVEEZ has been featured across leading business, startup, mobility,
             and industry publications.
           </p>
         </div>
 
-        <div className="mt-12 grid grid-cols-4 md:grid-cols-8">
-          {partners.map((partner) => (
-            <div
-              key={partner.name}
-              className="flex items-center justify-center px-3 py-2"
-            >
+        {/* Slider */}
+        <div className="overflow-hidden">
+          <div ref={trackRef} className="flex items-center gap-10 w-max">
+            {doubled.map((partner, i) => (
               <img
+                key={`${partner.name}-${i}`}
                 src={partner.logo}
                 alt={partner.name}
-                className="h-10 w-auto object-contain"
+                className="h-8 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
               />
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
     </div>

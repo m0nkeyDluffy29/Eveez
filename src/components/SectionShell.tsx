@@ -9,64 +9,81 @@ export type VerticalKey =
   | "vehicle-rd"
   | "training";
 
-export const VERTICALS: Record<
-  VerticalKey,
-  {
-    title: string;
-    tagline: string;
-    color: "orange" | "green" | "mixed";
-    accent: string; // css color
-  }
-> = {
+type VerticalConfig = {
+  navLabel: string;
+  pageTitle: string;
+  tag: string;
+  tagline: string;
+  color: "orange" | "green" | "mixed";
+  accent: string;
+};
+
+export const VERTICALS: Record<VerticalKey, VerticalConfig> = {
   franchise: {
-    title: "Franchise",
+    navLabel: "Franchise",
+    pageTitle: "Franchise",
+    tag: "Pillar 01",
     tagline: "Start Your EVpreneur Journey Today",
     color: "orange",
     accent: "#ff5a2a",
   },
   "fast-charging": {
-    title: "Fast Charging",
+    navLabel: "Fast Charging",
+    pageTitle: "Fast Charging",
+    tag: "Pillar 02",
     tagline: "Coast-to-coast electrons, delivered in minutes.",
     color: "green",
-    accent: "oklch(0.70 0.2368 137.65)",
+    accent: "#ff5a2a",
   },
   service: {
-    title: "Service",
+    navLabel: "Service",
+    pageTitle: "Service",
+    tag: "Pillar 03",
     tagline: "An always-on care ecosystem for every rider.",
     color: "orange",
     accent: "#ff5a2a",
   },
   "tech-stack": {
-    title: "Tech Stack",
+    navLabel: "Tech Stack",
+    pageTitle: "Tech Stack",
+    tag: "Pillar 04",
     tagline: "Cloud, IoT, and edge — orchestrating mobility.",
     color: "mixed",
-    accent: "oklch(0.72 0.18 205)",
+    accent: "#ff5a2a",
   },
   "vehicle-rd": {
-    title: "Vehicle R&D",
+    navLabel: "Vehicle R&D",
+    pageTitle: "Vehicle R&D",
+    tag: "Pillar 05",
     tagline: "Designing the EVs of the next decade.",
     color: "orange",
     accent: "#ff5a2a",
   },
   training: {
-    title: "Training Programmes",
+    navLabel: "Training Programmes",
+    pageTitle: "Training Programmes",
+    tag: "Pillar 06",
     tagline: "Empowering the workforce that powers EVeez.",
     color: "green",
-    accent: "oklch(0.70 0.22 345)",
+    accent: "#ff5a2a",
   },
 };
 
 export function SectionShell({
   vertical,
   children,
+  hideHero = false,
 }: {
   vertical: VerticalKey;
   children: ReactNode;
+  hideHero?: boolean;
 }) {
   const v = VERTICALS[vertical];
   const router = useRouter();
+
   return (
     <div className="relative min-h-screen bg-black text-white">
+      {/* ── Navbar ── */}
       <header className="relative z-30 border-b-2 border-orange bg-black">
         <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 group">
@@ -85,7 +102,7 @@ export function SectionShell({
                 to={`/${k}` as never}
                 className="text-sm text-white/80 hover:text-white transition"
               >
-                {VERTICALS[k].title}
+                {VERTICALS[k].navLabel}
               </Link>
             ))}
           </nav>
@@ -101,26 +118,32 @@ export function SectionShell({
         </div>
       </header>
 
+      {/* ── Main ── */}
       <main className="relative mx-auto max-w-7xl px-6">
-        <div className="mb-12 mt-12">
-          <div
-            className="inline-flex items-center gap-2 rounded-full border border-border glass px-3 py-1 text-xs uppercase tracking-[0.2em]"
-            style={{ color: v.accent }}
-          >
-            <span
-              className="h-1.5 w-1.5 rounded-full"
-              style={{ background: v.accent }}
-            />
-            {v.title}
+        {!hideHero && (
+          <div className="mb-12 mt-12">
+            <div
+              className="inline-flex items-center gap-2 rounded-full border border-border glass px-3 py-1 text-xs uppercase tracking-[0.2em]"
+              style={{ color: v.accent }}
+            >
+              <span
+                className="h-1.5 w-1.5 rounded-full"
+                style={{ background: v.accent }}
+              />
+              {v.tag}
+            </div>
+
+            <h1 className="mt-5 text-5xl md:text-7xl font-semibold leading-[1.05]">
+              <span className="text-gradient-ev">{v.pageTitle}</span>
+            </h1>
+
+            <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
+              {v.tagline}
+            </p>
           </div>
-          <h1 className="mt-5 text-5xl md:text-7xl font-semibold leading-[1.05]">
-            <span className="text-gradient-ev">{v.title}</span>
-          </h1>
-          <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-            {v.tagline}
-          </p>
-        </div>
-        {children}
+        )}
+
+        <div className={hideHero ? "mt-12" : ""}>{children}</div>
       </main>
     </div>
   );

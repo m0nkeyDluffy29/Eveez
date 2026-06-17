@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { SectionShell } from "@/components/SectionShell";
+import { SectionShell, VERTICALS } from "@/components/SectionShell";
 import { Car, Atom, Battery, Wind } from "lucide-react";
 import FooterSection from "@/components/FooterSection";
 import vehicleImage from "../../assets/images/EVeez-Concept.png";
@@ -20,16 +20,36 @@ export const Route = createFileRoute("/vehicle-rd")({
 });
 
 function RDPage() {
+  const v = VERTICALS["vehicle-rd"];
+
   return (
-    <SectionShell vertical="vehicle-rd">
+    <SectionShell vertical="vehicle-rd" hideHero>
       <div className="grid lg:grid-cols-2 gap-12 items-center">
-        {/* Left: feature list */}
+        {/* Left: tag + title + feature list */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7 }}
           className="flex flex-col gap-4"
         >
+          {/* Pill tag */}
+          <div
+            className="inline-flex items-center gap-2 w-fit rounded-full border border-white/10 px-3 py-1 text-xs uppercase tracking-[0.2em]"
+            style={{ color: v.accent }}
+          >
+            <span
+              className="h-1.5 w-1.5 rounded-full"
+              style={{ background: v.accent }}
+            />
+            {v.tag}
+          </div>
+
+          {/* Page title */}
+          <h1 className="text-3xl md:text-4xl font-semibold leading-snug text-white">
+            {v.pageTitle} – <span className="text-white">{v.tagline}</span>
+          </h1>
+
+          {/* Feature list */}
           {[
             {
               I: Atom,
@@ -101,6 +121,7 @@ function RDPage() {
           </div>
         </motion.div>
       </div>
+
       <div className="mt-20">
         <FooterSection />
       </div>

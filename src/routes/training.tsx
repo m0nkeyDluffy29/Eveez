@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { SectionShell } from "@/components/SectionShell";
+import { SectionShell, VERTICALS } from "@/components/SectionShell";
 import { GraduationCap, Users, Award } from "lucide-react";
 import FooterSection from "@/components/FooterSection";
 
@@ -19,6 +19,8 @@ export const Route = createFileRoute("/training")({
 });
 
 function TrainingPage() {
+  const v = VERTICALS["training"];
+
   const tracks = [
     {
       I: GraduationCap,
@@ -57,7 +59,32 @@ function TrainingPage() {
   ];
 
   return (
-    <SectionShell vertical="training">
+    <SectionShell vertical="training" hideHero>
+      {/* Tag + Title */}
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="flex flex-col gap-4 mb-10"
+      >
+        {/* Pill tag */}
+        <div
+          className="inline-flex items-center gap-2 w-fit rounded-full border border-white/10 px-3 py-1 text-xs uppercase tracking-[0.2em]"
+          style={{ color: v.accent }}
+        >
+          <span
+            className="h-1.5 w-1.5 rounded-full"
+            style={{ background: v.accent }}
+          />
+          {v.tag}
+        </div>
+
+        {/* Page title */}
+        <h1 className="text-3xl md:text-4xl font-semibold leading-snug text-white">
+          {v.pageTitle} – <span className="text-white">{v.tagline}</span>
+        </h1>
+      </motion.div>
+
       {/* Course cards */}
       <div className="grid lg:grid-cols-3 gap-6">
         {tracks.map((t, i) => (
