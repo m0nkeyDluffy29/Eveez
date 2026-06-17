@@ -1,25 +1,32 @@
-import { Droplet, Leaf, Map } from "lucide-react";
+import {
+  Droplet,
+  FuelIcon,
+  Leaf,
+  LeafIcon,
+  Map,
+  ScooterIcon,
+} from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 export default function EnvironmentalImpact() {
   const stats = [
     {
-      icon: Droplet,
+      icon: FuelIcon,
       value: "2,827,335.39+",
       label: "Fuel Saved (in litres)",
-      color: "bg-orange-500/20",
+      color: "bg-orange-500",
     },
     {
-      icon: Leaf,
+      icon: LeafIcon,
       value: "8,482,006.18+",
       label: "Kgs CO2 saved",
-      color: "bg-green-500/20",
+      color: "bg-green-500",
     },
     {
-      icon: Map,
+      icon: ScooterIcon,
       value: "169,640,123.64+",
       label: "Km Covered",
-      color: "bg-cyan-500/20",
+      color: "bg-cyan-500",
     },
   ];
 
@@ -139,13 +146,13 @@ export default function EnvironmentalImpact() {
     >
       <div className="max-w-3xl mx-auto text-center">
         <div
-          className="text-[30px] uppercase tracking-[0.3em] text-white"
+          className="text-[25px] uppercase tracking-[0.3em] text-white"
           style={{ fontFamily: "Sora, sans-serif" }}
         >
           ENVIRONMENTAL IMPACT
         </div>
         <p
-          className="mt-2 text-sm text-muted-foreground"
+          className="mt-2 text-sm text-white"
           style={{ fontFamily: "Sora, sans-serif" }}
         >
           Our Collective Impact

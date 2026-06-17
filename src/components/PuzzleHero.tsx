@@ -227,7 +227,7 @@ export default function PuzzleHero() {
   }
 
   // Tile size in assembled state
-  const TILE = 140;
+  const TILE = 180;
   const GAP = 0;
   const isFlat = phase !== "scatter";
 
@@ -646,7 +646,7 @@ export default function PuzzleHero() {
                 style={{ transform: `rotate(0deg)` }}
               >
                 <div
-                  className="mb-2 inline-flex h-10 w-10 items-center justify-center rounded-xl"
+                  className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl"
                   style={{
                     background: `linear-gradient(135deg, ${p.accent}, transparent)`,
                   }}
@@ -658,7 +658,7 @@ export default function PuzzleHero() {
                   />
                 </div>
                 <div
-                  className="text-[11px] font-semibold uppercase tracking-[0.16em]"
+                  className="text-sm font-semibold uppercase tracking-[0.16em]"
                   style={{ color: p.textColor }}
                 >
                   {p.title}
