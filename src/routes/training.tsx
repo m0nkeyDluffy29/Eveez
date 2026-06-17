@@ -80,7 +80,10 @@ function TrainingPage() {
         </div>
 
         {/* Page title */}
-        <h1 className="text-3xl md:text-4xl font-semibold leading-snug text-white">
+        <h1
+          className="text-3xl md:text-4xl font-normal leading-snug text-white"
+          style={{ fontFamily: "Sora, sans-serif" }}
+        >
           {v.pageTitle} – <span className="text-white">{v.tagline}</span>
         </h1>
       </motion.div>
@@ -98,11 +101,11 @@ function TrainingPage() {
             <t.I className={`h-6 w-6 ${t.iconColor}`} />
             <div>
               <div className="text-base font-semibold text-white">{t.t}</div>
-              <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mt-0.5">
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[var(--footer-text)] mt-0.5">
                 {t.w}
               </div>
             </div>
-            <p className="text-sm text-muted-foreground">{t.d}</p>
+            <p className="text-sm text-[var(--footer-text)]">{t.d}</p>
             <span className={`text-sm mt-auto ${t.enrollColor}`}>Enroll →</span>
           </motion.div>
         ))}

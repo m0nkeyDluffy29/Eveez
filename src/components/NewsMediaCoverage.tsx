@@ -49,10 +49,13 @@ export default function NewsMediaCoverage() {
       <section className="mx-auto max-w-7xl px-6 py-16 text-white">
         {/* Heading */}
         <div className="max-w-3xl mx-auto text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-white">
+          <h2
+            className="text-3xl md:text-4xl font-semibold tracking-tight text-white"
+            style={{ fontFamily: "Sora, sans-serif" }}
+          >
             News & Media Coverage
           </h2>
-          <p className="mt-2 text-base text-neutral-400">
+          <p className="mt-2 text-base text-[var(--footer-text)]">
             EVEEZ has been featured across leading business, startup, mobility,
             and industry publications.
           </p>

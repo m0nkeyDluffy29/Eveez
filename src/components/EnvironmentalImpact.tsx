@@ -138,10 +138,16 @@ export default function EnvironmentalImpact() {
       className="mx-auto max-w-7xl px-6 py-20 bg"
     >
       <div className="max-w-3xl mx-auto text-center">
-        <div className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground">
+        <div
+          className="text-[30px] uppercase tracking-[0.3em] text-white"
+          style={{ fontFamily: "Sora, sans-serif" }}
+        >
           ENVIRONMENTAL IMPACT
         </div>
-        <p className="mt-2 text-sm text-muted-foreground">
+        <p
+          className="mt-2 text-sm text-muted-foreground"
+          style={{ fontFamily: "Sora, sans-serif" }}
+        >
           Our Collective Impact
         </p>
       </div>
@@ -152,7 +158,7 @@ export default function EnvironmentalImpact() {
           return (
             <div
               key={i}
-              className="rounded-2xl border border-border bg-surface/60 p-6 flex flex-col items-center text-center"
+              className="rounded-2xl border border-border bg-surface/60 p-6 flex flex-col items-center text-center bg-neutral-900"
             >
               <div
                 className={`mb-4 inline-flex h-14 w-14 items-center justify-center rounded-lg ${s.color}`}
@@ -164,7 +170,7 @@ export default function EnvironmentalImpact() {
               <div className="text-3xl md:text-4xl font-semibold tracking-tight text-white">
                 {display[i] ?? s.value}
               </div>
-              <div className="mt-2 text-sm text-muted-foreground">
+              <div className="mt-2 text-sm text-[var(--footer-text)]">
                 {s.label}
               </div>
             </div>

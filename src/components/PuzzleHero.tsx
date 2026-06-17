@@ -229,6 +229,7 @@ export default function PuzzleHero() {
   // Tile size in assembled state
   const TILE = 140;
   const GAP = 0;
+  const isFlat = phase !== "scatter";
 
   return (
     <div
@@ -270,7 +271,7 @@ export default function PuzzleHero() {
             <img
               src="../../assets/icons/eveez-logo.png"
               alt="EVeez"
-              className="h-10 w-auto object-contain"
+              className="h-15 w-auto object-contain"
               loading="lazy"
             />
           </a>
@@ -279,37 +280,37 @@ export default function PuzzleHero() {
           <nav className="hidden md:flex flex-1 justify-center items-center gap-8">
             <a
               href="/franchise"
-              className="text-sm text-white/80 hover:text-white transition"
+              className="text-sm text-white/80 hover:text-[var(--ev-orange)] transition"
             >
               Franchise
             </a>
             <a
               href="#fast-charging"
-              className="text-sm text-white/80 hover:text-white transition"
+              className="text-sm text-white/80 hover:text-[var(--ev-orange)] transition"
             >
               Fast Charging
             </a>
             <a
               href="/service"
-              className="text-sm text-white/80 hover:text-white transition"
+              className="text-sm text-white/80 hover:text-[var(--ev-orange)] transition"
             >
               Service
             </a>
             <a
               href="/tech-stack"
-              className="text-sm text-white/80 hover:text-white transition"
+              className="text-sm text-white/80 hover:text-[var(--ev-orange)] transition"
             >
               Tech Stack
             </a>
             <a
               href="/vehicle-rd"
-              className="text-sm text-white/80 hover:text-white transition"
+              className="text-sm text-white/80 hover:text-[var(--ev-orange)] transition"
             >
               Vehicle R&D
             </a>
             <a
               href="/training"
-              className="text-sm text-white/80 hover:text-white transition"
+              className="text-sm text-white/80 hover:text-[var(--ev-orange)] transition"
             >
               Training Programmes
             </a>
@@ -328,6 +329,7 @@ export default function PuzzleHero() {
       </header>
 
       {/* Hero copy — fades when assembling */}
+      {/* Original hero copy — visible while pieces are scattered */}
       <AnimatePresence>
         {phase === "scatter" && (
           <motion.div
@@ -345,6 +347,56 @@ export default function PuzzleHero() {
               Building livelihoods through electric mobility, technology,
               infrastructure, and franchise growth.
             </p>
+            <a
+              href="#franchise"
+              className="inline-flex items-center rounded-full bg-[#FF6A1A] px-5 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-[#ea5b0c] transition mt-4 g-4"
+              style={{ marginRight: "1rem" }}
+            >
+              Become A Partner
+            </a>
+            <a
+              href="#ecosystem"
+              className="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/10 transition"
+            >
+              Explore Ecosystem
+            </a>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* New copy — appears once a piece is clicked and pieces are assembling */}
+      <AnimatePresence>
+        {phase === "assemble" && (
+          <motion.div
+            key="copy-assembled"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.6 }}
+            className="relative z-20 mx-auto max-w-3xl px-6 pt-10 text-center"
+          >
+            <h1 className="mt-5 text-5xl md:text-6xl font-semibold leading-[1.02]">
+              India's EV{" "}
+              <span className="text-gradient-ev">Mobility Ecosystem</span>
+            </h1>
+            <p className="mt-4 text-base md:text-lg text-muted-foreground">
+              Building livelihoods through electric mobility, technology,
+              infrastructure, and franchise growth.
+            </p>
+            <div className="mt-6 flex items-center justify-center gap-3">
+              <a
+                href="#franchise"
+                className="inline-flex items-center rounded-full bg-[#FF6A1A] px-5 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-[#ea5b0c] transition"
+              >
+                Become A Partner
+              </a>
+              <a
+                href="#ecosystem"
+                className="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/10 transition"
+              >
+                Explore Ecosystem
+              </a>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -441,31 +493,151 @@ export default function PuzzleHero() {
                   : undefined
               }
               whileTap={scattered ? { scale: 0.96 } : undefined}
-              style={{ width: TILE, height: TILE, transformOrigin: "center" }}
+              style={{
+                width: TILE,
+                height: TILE,
+                transformOrigin: "center",
+                zIndex: p.row * 3 + p.col + 1,
+              }}
             >
               <svg
                 width={TILE}
                 height={TILE}
                 viewBox={`0 0 ${TILE} ${TILE}`}
                 className="overflow-visible"
+                style={{
+                  filter: isFlat
+                    ? "none"
+                    : `drop-shadow(0 12px 24px rgba(0,0,0,0.5)) drop-shadow(0 4px 8px rgba(0,0,0,0.3))`,
+                  transition: "filter 0.6s ease",
+                }}
               >
-                <g>
-                  {/* 3D Depth Shadow */}
-                  <path
+                <defs>
+                  <linearGradient
+                    id={`grad-${p.key}`}
+                    x1="0%"
+                    y1="0%"
+                    x2="100%"
+                    y2="100%"
+                  >
+                    <stop
+                      offset="0%"
+                      stopColor={
+                        p.textColor === "#ffffff" ? "#FF8C55" : "#FFFFFF"
+                      }
+                    />
+                    <stop
+                      offset="45%"
+                      stopColor={
+                        p.textColor === "#ffffff" ? "#FF6B2B" : "#FDF4E8"
+                      }
+                    />
+                    <stop
+                      offset="100%"
+                      stopColor={
+                        p.textColor === "#ffffff" ? "#8B2E06" : "#F5E8D0"
+                      }
+                    />
+                  </linearGradient>
+                  <linearGradient
+                    id={`hl-${p.key}`}
+                    x1="0%"
+                    y1="0%"
+                    x2="70%"
+                    y2="70%"
+                  >
+                    <stop offset="0%" stopColor="#ffffff" stopOpacity="0.2" />
+                    <stop offset="60%" stopColor="#ffffff" stopOpacity="0.03" />
+                    <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
+                  </linearGradient>
+                  <clipPath id={`clip-${p.key}`}>
+                    <path d={path} />
+                  </clipPath>
+                </defs>
+
+                {/* Layer 1: deepest shadow — fades out when flat */}
+                <motion.path
+                  d={path}
+                  fill={p.textColor === "#ffffff" ? "#3B0F02" : "#C8A882"}
+                  transform="translate(-7, 11)"
+                  animate={{
+                    opacity: isFlat
+                      ? 0
+                      : p.textColor === "#ffffff"
+                        ? 0.75
+                        : 0.85,
+                  }}
+                  transition={{ duration: 0.6 }}
+                />
+
+                {/* Layer 2: mid shadow — orange only, skipped for cream */}
+                {p.textColor === "#ffffff" && (
+                  <motion.path
                     d={path}
-                    fill="#7F4535"
-                    stroke="none"
-                    transform="translate(-6, 8)"
-                    opacity="0.9"
+                    fill="#7A2808"
+                    transform="translate(-4, 7)"
+                    animate={{ opacity: isFlat ? 0 : 0.9 }}
+                    transition={{ duration: 0.6 }}
                   />
-                  {/* Front Face */}
-                  <path
-                    d={path}
-                    fill={p.fillStart}
-                    stroke={p.accent}
-                    strokeWidth="1"
-                  />
-                </g>
+                )}
+
+                {/* Layer 3: upper side face — fades out when flat */}
+                <motion.path
+                  d={path}
+                  fill={p.textColor === "#ffffff" ? "#C04010" : "#EED8B8"}
+                  transform={
+                    p.textColor === "#ffffff"
+                      ? "translate(-2, 3)"
+                      : "translate(-2, 4)"
+                  }
+                  animate={{ opacity: isFlat ? 0 : 1 }}
+                  transition={{ duration: 0.6 }}
+                />
+
+                {/* Layer 4: top face with gradient — fades out when flat */}
+                <motion.path
+                  d={path}
+                  fill={`url(#grad-${p.key})`}
+                  stroke={p.textColor === "#ffffff" ? "#FF9966" : "#DEC8A0"}
+                  strokeWidth="0.8"
+                  animate={{
+                    opacity: isFlat ? 0 : 1,
+                    strokeOpacity: isFlat
+                      ? 0
+                      : p.textColor === "#ffffff"
+                        ? 0.7
+                        : 0.8,
+                  }}
+                  transition={{ duration: 0.6 }}
+                />
+
+                {/* Layer 4b: flat 2D face — fades in when flat */}
+                <motion.path
+                  d={path}
+                  fill={p.fillStart}
+                  animate={{ opacity: isFlat ? 1 : 0 }}
+                  transition={{ duration: 0.6 }}
+                />
+
+                {/* Layer 5: highlight sheen — fades out when flat */}
+                <motion.path
+                  d={path}
+                  fill={`url(#hl-${p.key})`}
+                  clipPath={`url(#clip-${p.key})`}
+                  animate={{ opacity: isFlat ? 0 : 1 }}
+                  transition={{ duration: 0.6 }}
+                />
+
+                {/* Layer 6: thin bright bevel — fades out when flat */}
+                <motion.path
+                  d={path}
+                  fill="none"
+                  stroke="#ffffff"
+                  strokeWidth="1.5"
+                  clipPath={`url(#clip-${p.key})`}
+                  animate={{ opacity: isFlat ? 0 : 0.22 }}
+                  transition={{ duration: 0.6 }}
+                />
               </svg>
 
               {/* content overlay */}

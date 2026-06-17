@@ -43,22 +43,25 @@ export default function WhyEveezWins() {
   return (
     <section className="mx-auto max-w-7xl px-6 py-20">
       <div className="max-w-3xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-white">
+        <h2
+          className="text-3xl md:text-4xl font-semibold tracking-tight text-white"
+          style={{ fontFamily: "Sora, sans-serif" }}
+        >
           Why EVEEZ Wins
         </h2>
-        <p className="mt-3 text-base text-muted-foreground">
+        <p className="mt-3 text-base text-[var(--footer-text)]">
           Built to deliver sustainable growth, operational efficiency, and
           long-term value creation.
         </p>
       </div>
 
-      <div className="mt-10 grid gap-6 grid-cols-1 lg:grid-cols-3">
+      <div className="mt-10 grid gap-6 grid-cols-1 lg:grid-cols-3 ">
         {cards.map((card, index) => {
           const Icon = card.icon;
           return (
             <div
               key={index}
-              className="rounded-2xl border border-border bg-surface/60 p-6 shadow-2xl shadow-black/10"
+              className="rounded-2xl border border-border bg-surface/60 p-6 shadow-2xl shadow-black/10 bg-neutral-900"
             >
               <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[rgba(255,255,255,0.04)] text-[var(--ev-orange)]">
                 <Icon className="h-5 w-5" strokeWidth={1.8} />
@@ -66,7 +69,7 @@ export default function WhyEveezWins() {
               <h3 className="text-xl font-semibold tracking-tight text-white">
                 {card.title}
               </h3>
-              <p className="mt-3 text-sm leading-6 text-muted-foreground">
+              <p className="mt-3 text-sm leading-6 text-[var(--footer-text)]">
                 {card.description}
               </p>
             </div>

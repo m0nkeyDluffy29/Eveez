@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import PuzzleHero from "@/components/PuzzleHero";
 import EnvironmentalImpact from "@/components/EnvironmentalImpact";
 import WhyEveezWins from "@/components/WhyEveezWins";
-import EveezEcosystem from "@/components/EveezEcosystem";
+// import EveezEcosystem from "@/components/EveezEcosystem";
 import NewsMediaCoverage from "@/components/NewsMediaCoverage";
 import FooterSection from "@/components/FooterSection";
 
@@ -30,7 +30,7 @@ export const Route = createFileRoute("/")({
       <PuzzleHero />
       <EnvironmentalImpact />
       <WhyEveezWins />
-      <EveezEcosystem />
+      {/* <EveezEcosystem /> */}
       <NewsMediaCoverage />
       <FooterSection />
     </div>

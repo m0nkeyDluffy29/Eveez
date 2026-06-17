@@ -45,7 +45,10 @@ function RDPage() {
           </div>
 
           {/* Page title */}
-          <h1 className="text-3xl md:text-4xl font-semibold leading-snug text-white">
+          <h1
+            className="text-3xl md:text-4xl font-normal leading-snug text-white"
+            style={{ fontFamily: "Sora, sans-serif" }}
+          >
             {v.pageTitle} – <span className="text-white">{v.tagline}</span>
           </h1>
 
@@ -82,7 +85,9 @@ function RDPage() {
               <c.I className="h-5 w-5 mt-0.5 shrink-0 text-[var(--ev-orange)]" />
               <div>
                 <div className="text-sm font-semibold text-white">{c.t}</div>
-                <p className="text-xs text-muted-foreground mt-0.5">{c.d}</p>
+                <p className="text-xs text-[var(--footer-text)] mt-0.5">
+                  {c.d}
+                </p>
               </div>
             </motion.div>
           ))}

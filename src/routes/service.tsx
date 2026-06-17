@@ -58,7 +58,10 @@ function ServicePage() {
           </div>
 
           {/* Page title */}
-          <h1 className="text-3xl md:text-4xl font-semibold leading-snug text-white">
+          <h1
+            className="text-3xl md:text-4xl font-normal leading-snug text-white"
+            style={{ fontFamily: "Sora, sans-serif" }}
+          >
             {v.pageTitle} – <span className="text-white">{v.tagline}</span>
           </h1>
 
@@ -77,7 +80,7 @@ function ServicePage() {
                 }`}
               >
                 <div className="text-xl font-semibold">{s.v}</div>
-                <div className="text-[10px] uppercase tracking-widest text-muted-foreground mt-1">
+                <div className="text-[10px] uppercase tracking-widest text-[var(--footer-text)] mt-1">
                   {s.l}
                 </div>
               </motion.div>
@@ -109,7 +112,9 @@ function ServicePage() {
                     {i + 1}
                   </span>
                   <div className="mt-3 text-sm font-semibold">{s.t}</div>
-                  <p className="mt-1 text-xs text-muted-foreground">{s.d}</p>
+                  <p className="mt-1 text-xs text-[var(--footer-text)]">
+                    {s.d}
+                  </p>
                 </motion.div>
               ))}
             </div>

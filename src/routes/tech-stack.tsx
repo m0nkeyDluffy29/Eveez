@@ -92,7 +92,10 @@ function TechPage() {
           </div>
 
           {/* Page title */}
-          <h1 className="text-3xl md:text-4xl font-semibold leading-snug text-white">
+          <h1
+            className="text-3xl md:text-4xl font-normal leading-snug text-white"
+            style={{ fontFamily: "Sora, sans-serif" }}
+          >
             {v.pageTitle} – <span className="text-white">{v.tagline}</span>
           </h1>
 
@@ -102,7 +105,7 @@ function TechPage() {
               <Cpu className="h-5 w-5 text-[var(--ev-blue)]" />
               <span className="font-semibold text-base">Built on edge.</span>
             </div>
-            <p className="mt-3 text-sm text-muted-foreground">
+            <p className="mt-3 text-sm text-[var(--footer-text)]">
               A cloud-native platform with first-class IoT primitives. Ship
               features as fast as we ship vehicles.
             </p>

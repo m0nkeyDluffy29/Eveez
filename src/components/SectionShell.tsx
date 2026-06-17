@@ -90,7 +90,7 @@ export function SectionShell({
             <img
               src="../../assets/icons/eveez-logo.png"
               alt="EVeez"
-              className="h-10 w-auto object-contain"
+              className="h-15 w-auto object-contain"
               loading="lazy"
             />
           </Link>
@@ -100,7 +100,7 @@ export function SectionShell({
               <Link
                 key={k}
                 to={`/${k}` as never}
-                className="text-sm text-white/80 hover:text-white transition"
+                className="text-sm text-white/80 hover:text-[var(--ev-orange)] transition"
               >
                 {VERTICALS[k].navLabel}
               </Link>
@@ -133,11 +133,17 @@ export function SectionShell({
               {v.tag}
             </div>
 
-            <h1 className="mt-5 text-5xl md:text-7xl font-semibold leading-[1.05]">
+            <h1
+              className="mt-5 text-5xl md:text-7xl font-semibold leading-[1.05]"
+              style={{ fontFamily: "Sora, sans-serif" }}
+            >
               <span className="text-gradient-ev">{v.pageTitle}</span>
             </h1>
 
-            <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
+            <p
+              className="mt-4 max-w-2xl text-lg text-muted-foreground "
+              style={{ fontFamily: "Sora, sans-serif" }}
+            >
               {v.tagline}
             </p>
           </div>

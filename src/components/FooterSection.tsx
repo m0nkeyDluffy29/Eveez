@@ -70,7 +70,11 @@ export default function FooterSection() {
             </span>
           </div>
           <div className="text-center text-xs text-neutral-500">
-            Developed and Maintained by nDimension Studio
+            Developed and Maintained by
+            <a href="https://nds.studio/" target="_blank">
+              {" "}
+              nDimension
+            </a>
           </div>
           <div className="text-center text-xs text-neutral-500">
             INDIA HQ | GURUGRAM

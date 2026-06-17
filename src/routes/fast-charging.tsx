@@ -68,7 +68,10 @@ function ChargingPage() {
           </div>
 
           {/* Page title */}
-          <h1 className="text-3xl md:text-4xl font-semibold leading-snug text-white">
+          <h1
+            className="text-3xl md:text-4xl font-normal leading-snug text-white"
+            style={{ fontFamily: "Sora, sans-serif" }}
+          >
             {v.pageTitle} – <span className="text-white">{v.tagline}</span>
           </h1>
 
@@ -80,7 +83,7 @@ function ChargingPage() {
                 DC fast. Universal.
               </span>
             </div>
-            <p className="mt-3 text-sm text-muted-foreground">
+            <p className="mt-3 text-sm text-[var(--footer-text)]">
               CCS2 + Bharat DC-001, smart load balancing, and dynamic pricing —
               all behind one tap of the EVeez app.
             </p>
