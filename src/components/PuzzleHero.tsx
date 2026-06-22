@@ -213,7 +213,8 @@ export default function PuzzleHero() {
       </div>
 
       {/* Puzzle stage */}
-      <div className="relative z-10 mx-auto max-w-7xl h-[78vh] md:h-[72vh]">
+      <div className="relative z-10 mx-auto w-full h-[78vh] md:h-[72vh] flex items-center justify-center overflow-visible pointer-events-none">
+        <div className="relative w-[1000px] h-[600px] scale-[0.35] sm:scale-[0.6] md:scale-100 flex-shrink-0 origin-center pointer-events-none [&>*]:pointer-events-auto">
         {PIECES.map((p) => {
           const id = `pp-${p.key}`;
 
@@ -320,6 +321,7 @@ export default function PuzzleHero() {
             </motion.button>
           );
         })}
+        </div>
 
         {/* Center glow removed - now plain black */}
       </div>
