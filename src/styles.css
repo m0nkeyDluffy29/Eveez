@@ -42,7 +42,7 @@
   --radius: 0.875rem;
 
   /* Blended dark+light premium aesthetic */
-  --background: oklch(0.16 0.02 250);
+  --background: oklch(0.1647 0.0042 285.94);
   --foreground: oklch(0.98 0.005 250);
   --background-secondary: oklch(0.1647 0.0042 285.94);
   --background-primary: oklch(0.1876 0.004 286.01);

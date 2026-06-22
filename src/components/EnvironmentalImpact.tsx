@@ -1,32 +1,24 @@
-import {
-  Droplet,
-  FuelIcon,
-  Leaf,
-  LeafIcon,
-  Map,
-  ScooterIcon,
-} from "lucide-react";
+import figmaFuel from "./icons/figm-fuel";
+import figmaLeaf from "./icons/figma-leaf";
+import figmaElectricScooter from "./icons/figma-electric-scooter";
 import { useEffect, useRef, useState } from "react";
 
 export default function EnvironmentalImpact() {
   const stats = [
     {
-      icon: FuelIcon,
+      icon: figmaFuel,
       value: "2,827,335.39+",
       label: "Fuel Saved (in litres)",
-      color: "bg-orange-500",
     },
     {
-      icon: LeafIcon,
+      icon: figmaLeaf,
       value: "8,482,006.18+",
       label: "Kgs CO2 saved",
-      color: "bg-green-500",
     },
     {
-      icon: ScooterIcon,
+      icon: figmaElectricScooter,
       value: "169,640,123.64+",
       label: "Km Covered",
-      color: "bg-cyan-500",
     },
   ];
 
@@ -165,13 +157,16 @@ export default function EnvironmentalImpact() {
           return (
             <div
               key={i}
-              className="rounded-2xl border border-border bg-surface/60 p-6 flex flex-col items-center text-center bg-neutral-900"
+              className="rounded-2xl border border-border bg-surface/60 p-6 flex flex-col items-center text-center bg-neutral-900/50"
             >
               <div
-                className={`mb-4 inline-flex h-14 w-14 items-center justify-center rounded-lg ${s.color}`}
+                className={`mb-4 inline-flex h-[70px] w-[70px] items-center justify-center rounded-lg ${s.color}`}
                 style={{ boxShadow: `0 8px 24px -12px rgba(0,0,0,0.6)` }}
               >
-                <Icon className="h-6 w-6 text-white" strokeWidth={1.8} />
+                <Icon
+                  className="h-[55px] w-[55px] text-white"
+                  strokeWidth={1.8}
+                />
               </div>
 
               <div className="text-3xl md:text-4xl font-semibold tracking-tight text-white">

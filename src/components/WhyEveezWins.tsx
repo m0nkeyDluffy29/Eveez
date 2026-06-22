@@ -1,29 +1,25 @@
-import {
-  CreditCard,
-  Activity,
-  CircleDollarSign,
-  ShieldCheck,
-  TrendingUp,
-} from "lucide-react";
+import figmaCost from "./icons/figma-cost";
+import figmaUptime from "./icons/figma-uptime";
+import figmaExpansion from "./icons/figma-expansion";
 
 const cards = [
   {
     title: "Predictable Operating Costs",
     description:
       "Consistent economics enabled through an integrated ecosystem approach that minimizes variance.",
-    icon: CreditCard,
+    icon: figmaCost,
   },
   {
     title: "Higher Vehicle Uptime",
     description:
       "Vehicles remain operational through proactive maintenance and tech-enabled service support.",
-    icon: Activity,
+    icon: figmaUptime,
   },
   {
     title: "Faster Fleet Expansion",
     description:
       "Scalable infrastructure and operational processes enable rapid deployment across new markets.",
-    icon: CircleDollarSign,
+    icon: figmaExpansion,
   },
 ];
 
@@ -49,10 +45,10 @@ export default function WhyEveezWins() {
           return (
             <div
               key={index}
-              className="rounded-2xl border border-border bg-surface/60 p-6 shadow-2xl shadow-black/10 bg-neutral-900"
+              className="rounded-2xl border border-border bg-surface/60 p-6 shadow-2xl shadow-black/10 bg-neutral-900/50"
             >
-              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[rgba(255,255,255,0.04)] text-[var(--ev-orange)]">
-                <Icon className="h-5 w-5" strokeWidth={1.8} />
+              <div className="mb-5 inline-flex h-[70px] w-[70px] items-center justify-center rounded-2xl text-[var(--ev-orange)]">
+                <Icon className="w-[55px] h-[55px]" strokeWidth={1.8} />
               </div>
               <h3 className="text-xl font-semibold tracking-tight text-white">
                 {card.title}

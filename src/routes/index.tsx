@@ -5,6 +5,7 @@ import WhyEveezWins from "@/components/WhyEveezWins";
 // import EveezEcosystem from "@/components/EveezEcosystem";
 import NewsMediaCoverage from "@/components/NewsMediaCoverage";
 import FooterSection from "@/components/FooterSection";
+import StatsSection from "@/components/stats";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -28,6 +29,7 @@ export const Route = createFileRoute("/")({
   component: () => (
     <div className="bg-neutral-950 text-white min-h-screen">
       <PuzzleHero />
+      <StatsSection />
       <EnvironmentalImpact />
       <WhyEveezWins />
       {/* <EveezEcosystem /> */}

@@ -1,21 +1,18 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useNavigate } from "@tanstack/react-router";
-import {
-  Store,
-  Zap,
-  Wrench,
-  Cpu,
-  Car,
-  GraduationCap,
-  type LucideIcon,
-} from "lucide-react";
+import figmaStore from "./icons/figma-store";
+import figmaBolt from "./icons/figma-bolt";
+import figmaHeadphone from "./icons/figma-headphone";
+import figmaTech from "./icons/figma-tech";
+import figmaScooter from "./icons/figma-scooter";
+import figmaEducation from "./icons/figma-education";
 import { VERTICALS, type VerticalKey } from "./SectionShell";
 
 type Piece = {
   key: VerticalKey;
   title: string;
-  Icon: LucideIcon;
+  Icon: React.ElementType;
   accent: string;
   fillStart: string;
   fillEnd: string;
@@ -35,7 +32,7 @@ const PIECES: Piece[] = [
   {
     key: "franchise",
     title: "Franchise",
-    Icon: Store,
+    Icon: figmaStore,
     accent: "oklch(0.683 0.2091 36.11)",
     fillStart: "oklch(0.683 0.2091 36.11)",
     fillEnd: "oklch(0.683 0.2091 36.11)",
@@ -50,12 +47,12 @@ const PIECES: Piece[] = [
   },
   {
     key: "fast-charging",
-    title: "Fast Charging",
-    Icon: Zap,
+    title: "Fast\nCharging",
+    Icon: figmaBolt,
     accent: "oklch(0.943 0.0296 38.56)",
     fillStart: "oklch(0.943 0.0296 38.56)",
     fillEnd: "oklch(0.943 0.0296 38.56)",
-    textColor: "oklch(0.683 0.2091 36.11)",
+    textColor: "oklch(0 0 0)",
     x: 70,
     y: 14,
     rot: 11,
@@ -67,7 +64,7 @@ const PIECES: Piece[] = [
   {
     key: "service",
     title: "Service",
-    Icon: Wrench,
+    Icon: figmaHeadphone,
     accent: "oklch(0.683 0.2091 36.11)",
     fillStart: "oklch(0.683 0.2091 36.11)",
     fillEnd: "oklch(0.683 0.2091 36.11)",
@@ -83,11 +80,11 @@ const PIECES: Piece[] = [
   {
     key: "tech-stack",
     title: "Tech Stack",
-    Icon: Cpu,
+    Icon: figmaTech,
     accent: "oklch(0.943 0.0296 38.56)",
     fillStart: "oklch(0.943 0.0296 38.56)",
     fillEnd: "oklch(0.943 0.0296 38.56)",
-    textColor: "oklch(0.683 0.2091 36.11)",
+    textColor: "oklch(0 0 0)",
     x: 8,
     y: 62,
     rot: 9,
@@ -99,7 +96,7 @@ const PIECES: Piece[] = [
   {
     key: "vehicle-rd",
     title: "Vehicle R&D",
-    Icon: Car,
+    Icon: figmaScooter,
     accent: "oklch(0.683 0.2091 36.11)",
     fillStart: "oklch(0.683 0.2091 36.11)",
     fillEnd: "oklch(0.683 0.2091 36.11)",
@@ -115,11 +112,11 @@ const PIECES: Piece[] = [
   {
     key: "training",
     title: "Training Programmes",
-    Icon: GraduationCap,
+    Icon: figmaEducation,
     accent: "oklch(0.943 0.0296 38.56)",
     fillStart: "oklch(0.943 0.0296 38.56)",
     fillEnd: "oklch(0.943 0.0296 38.56)",
-    textColor: "oklch(0.683 0.2091 36.11)",
+    textColor: "oklch(0 0 0)",
     x: 50,
     y: 30,
     rot: 6,
@@ -193,10 +190,10 @@ function piecePath(size: number, [t, r, b, l]: Sides) {
 // Define sides per (col,row) so adjacent edges complement (knob/hole)
 function sidesFor(col: 0 | 1 | 2, row: 0 | 1): Sides {
   // top, right, bottom, left
-  const top = row === 0 ? 0 : (col + row) % 2 === 0 ? 1 : -1;
-  const bottom = row === 1 ? 0 : (col + row + 1) % 2 === 0 ? -1 : 1;
-  const left = col === 0 ? 0 : (col + row) % 2 === 0 ? -1 : 1;
-  const right = col === 2 ? 0 : (col + row + 1) % 2 === 0 ? 1 : -1;
+  const top = row === 0 ? 0 : (col + row) % 2 === 0 ? -1 : 1;
+  const bottom = row === 1 ? 0 : (col + row + 1) % 2 === 0 ? 1 : -1;
+  const left = col === 0 ? 0 : (col + row) % 2 === 0 ? 1 : -1;
+  const right = col === 2 ? 0 : (col + row + 1) % 2 === 0 ? -1 : 1;
   return [top, right, bottom, left];
 }
 
@@ -269,7 +266,7 @@ export default function PuzzleHero() {
               E
             </motion.span> */}
             <img
-              src="../../assets/icons/eveez-logo.png"
+              src="/assets/icons/eveez-logo.png"
               alt="EVeez"
               className="h-15 w-auto object-contain"
               loading="lazy"
@@ -330,76 +327,83 @@ export default function PuzzleHero() {
 
       {/* Hero copy — fades when assembling */}
       {/* Original hero copy — visible while pieces are scattered */}
-      <AnimatePresence>
-        {phase === "scatter" && (
-          <motion.div
-            key="copy"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.6 }}
-            className="relative z-20 mx-auto max-w-3xl px-6 pt-10 text-center"
-          >
-            <h1 className="mt-5 text-5xl md:text-6xl font-semibold leading-[1.02]">
-              Mobility for <span className="text-gradient-ev">Livelihoods</span>
-            </h1>
-            <p className="mt-4 text-base md:text-lg text-muted-foreground">
-              Building livelihoods through electric mobility, technology,
-              infrastructure, and franchise growth.
-            </p>
-            <a
-              href="#franchise"
-              className="inline-flex items-center rounded-full bg-[#FF6A1A] px-5 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-[#ea5b0c] transition mt-4 g-4"
-              style={{ marginRight: "1rem" }}
+      {/* Hero copy container to prevent layout shift during crossfade */}
+      <div className="grid">
+        <AnimatePresence>
+          {phase === "scatter" && (
+            <motion.div
+              key="copy"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.6 }}
+              className="relative z-20 mx-auto max-w-3xl px-6 pt-10 text-center col-start-1 row-start-1"
             >
-              Become A Partner
-            </a>
-            <a
-              href="#ecosystem"
-              className="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/10 transition"
-            >
-              Explore Ecosystem
-            </a>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              <h1 className="mt-5 text-5xl md:text-6xl font-semibold leading-[1.02]">
+                Mobility for{" "}
+                <span className="text-gradient-ev">Livelihoods</span>
+              </h1>
+              {/* <p className="mt-4 text-base md:text-lg text-muted-foreground">
+                Building livelihoods through electric mobility, technology,
+                infrastructure, and franchise growth.
+              </p>
+              <div className="mt-4 flex items-center justify-center gap-3">
+                <a
+                  href="#franchise"
+                  className="inline-flex items-center rounded-full bg-[#FF6A1A] px-5 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-[#ea5b0c] transition"
+                >
+                  Become A Partner
+                </a>
+                <a
+                  href="#ecosystem"
+                  className="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/10 transition"
+                >
+                  Explore Ecosystem
+                </a>
+              </div> */}
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-      {/* New copy — appears once a piece is clicked and pieces are assembling */}
-      <AnimatePresence>
-        {phase === "assemble" && (
-          <motion.div
-            key="copy-assembled"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.6 }}
-            className="relative z-20 mx-auto max-w-3xl px-6 pt-10 text-center"
-          >
-            <h1 className="mt-5 text-5xl md:text-6xl font-semibold leading-[1.02]">
-              India's EV{" "}
-              <span className="text-gradient-ev">Mobility Ecosystem</span>
-            </h1>
-            <p className="mt-4 text-base md:text-lg text-muted-foreground">
-              Building livelihoods through electric mobility, technology,
-              infrastructure, and franchise growth.
-            </p>
-            <div className="mt-6 flex items-center justify-center gap-3">
-              <a
-                href="#franchise"
-                className="inline-flex items-center rounded-full bg-[#FF6A1A] px-5 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-[#ea5b0c] transition"
-              >
-                Become A Partner
-              </a>
-              <a
-                href="#ecosystem"
-                className="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/10 transition"
-              >
-                Explore Ecosystem
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+        <AnimatePresence>
+          {(phase === "assemble" || phase === "logo" || phase === "depart") && (
+            <motion.div
+              key="copy-assembled"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{
+                opacity: phase === "depart" ? 0 : 1,
+                y: phase === "depart" ? -20 : 0,
+              }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.6 }}
+              className="relative z-20 mx-auto max-w-3xl px-6 pt-10 text-center col-start-1 row-start-1"
+            >
+              <h1 className="mt-5 text-5xl md:text-6xl font-semibold leading-[1.02]">
+                India's EV{" "}
+                <span className="text-gradient-ev">Mobility Ecosystem</span>
+              </h1>
+              <p className="mt-4 text-base md:text-lg text-muted-foreground">
+                Building livelihoods through electric mobility, technology,
+                infrastructure, and franchise growth.
+              </p>
+              <div className="mt-6 flex items-center justify-center gap-3">
+                <a
+                  href="#franchise"
+                  className="inline-flex items-center rounded-full bg-[#FF6A1A] px-5 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-[#ea5b0c] transition"
+                >
+                  Become A Partner
+                </a>
+                <a
+                  href="#ecosystem"
+                  className="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/10 transition"
+                >
+                  Explore Ecosystem
+                </a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
 
       {/* Puzzle stage */}
       <div className="relative z-10 mx-auto max-w-7xl h-[78vh] md:h-[72vh]">
@@ -507,7 +511,7 @@ export default function PuzzleHero() {
                 className="overflow-visible"
                 style={{
                   filter: isFlat
-                    ? "none"
+                    ? "drop-shadow(0 8px 16px rgba(0,0,0,0.4))"
                     : `drop-shadow(0 12px 24px rgba(0,0,0,0.5)) drop-shadow(0 4px 8px rgba(0,0,0,0.3))`,
                   transition: "filter 0.6s ease",
                 }}
@@ -535,7 +539,7 @@ export default function PuzzleHero() {
                     <stop
                       offset="100%"
                       stopColor={
-                        p.textColor === "#ffffff" ? "#8B2E06" : "#F5E8D0"
+                        p.textColor === "#ffffff" ? "#D84A10" : "#F5E8D0"
                       }
                     />
                   </linearGradient>
@@ -594,28 +598,19 @@ export default function PuzzleHero() {
                   transition={{ duration: 0.6 }}
                 />
 
-                {/* Layer 4: top face with gradient — fades out when flat */}
+                {/* Layer 4: top face with gradient — stays visible when flat */}
                 <motion.path
                   d={path}
                   fill={`url(#grad-${p.key})`}
                   stroke={p.textColor === "#ffffff" ? "#FF9966" : "#DEC8A0"}
                   strokeWidth="0.8"
                   animate={{
-                    opacity: isFlat ? 0 : 1,
                     strokeOpacity: isFlat
                       ? 0
                       : p.textColor === "#ffffff"
                         ? 0.7
                         : 0.8,
                   }}
-                  transition={{ duration: 0.6 }}
-                />
-
-                {/* Layer 4b: flat 2D face — fades in when flat */}
-                <motion.path
-                  d={path}
-                  fill={p.fillStart}
-                  animate={{ opacity: isFlat ? 1 : 0 }}
                   transition={{ duration: 0.6 }}
                 />
 
@@ -645,20 +640,15 @@ export default function PuzzleHero() {
                 className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center text-center p-4"
                 style={{ transform: `rotate(0deg)` }}
               >
-                <div
-                  className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl"
-                  style={{
-                    background: `linear-gradient(135deg, ${p.accent}, transparent)`,
-                  }}
-                >
+                <div className="mb-3 inline-flex items-center justify-center">
                   <p.Icon
-                    className="h-5 w-5"
+                    className="w-[55px] h-[55px]"
                     style={{ color: p.textColor }}
                     strokeWidth={2.2}
                   />
                 </div>
                 <div
-                  className="text-sm font-semibold uppercase tracking-[0.16em]"
+                  className="text-sm font-semibold uppercase tracking-[0.16em] whitespace-pre-line"
                   style={{ color: p.textColor }}
                 >
                   {p.title}
