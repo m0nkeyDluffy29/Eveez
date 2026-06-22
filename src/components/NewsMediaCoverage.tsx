@@ -69,7 +69,7 @@ export default function NewsMediaCoverage() {
                 key={`${partner.name}-${i}`}
                 src={partner.logo}
                 alt={partner.name}
-                className="h-8 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
+                className="h-8 w-auto object-contain  hover:opacity-100 transition-opacity"
               />
             ))}
           </div>

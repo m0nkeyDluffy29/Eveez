@@ -25,18 +25,6 @@ const cards = [
       "Scalable infrastructure and operational processes enable rapid deployment across new markets.",
     icon: CircleDollarSign,
   },
-  {
-    title: "Proven Operating Model",
-    description:
-      "Validated through real-world operations, fleet management, and deep ecosystem execution.",
-    icon: ShieldCheck,
-  },
-  {
-    title: "Growing EV Adoption",
-    description:
-      "Benefit from increasing demand for electric mobility solutions across India's logistics and transit landscape.",
-    icon: TrendingUp,
-  },
 ];
 
 export default function WhyEveezWins() {
