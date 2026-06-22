@@ -8,194 +8,7 @@ import figmaTech from "./icons/figma-tech";
 import figmaScooter from "./icons/figma-scooter";
 import figmaEducation from "./icons/figma-education";
 import { VERTICALS, type VerticalKey } from "./SectionShell";
-
-type Piece = {
-  key: VerticalKey;
-  title: string;
-  Icon: React.ElementType;
-  accent: string;
-  fillStart: string;
-  fillEnd: string;
-  textColor: string;
-  // initial scattered transform
-  x: number; // %
-  y: number; // %
-  rot: number; // deg
-  size: number; // px
-  delay: number;
-  // grid position when assembled (col, row in 3x2)
-  col: 0 | 1 | 2;
-  row: 0 | 1;
-};
-
-const PIECES: Piece[] = [
-  {
-    key: "franchise",
-    title: "Franchise",
-    Icon: figmaStore,
-    accent: "oklch(0.683 0.2091 36.11)",
-    fillStart: "oklch(0.683 0.2091 36.11)",
-    fillEnd: "oklch(0.683 0.2091 36.11)",
-    textColor: "#ffffff",
-    x: 12,
-    y: 18,
-    rot: -14,
-    size: 200,
-    delay: 0.0,
-    col: 0,
-    row: 0,
-  },
-  {
-    key: "fast-charging",
-    title: "Fast\nCharging",
-    Icon: figmaBolt,
-    accent: "oklch(0.943 0.0296 38.56)",
-    fillStart: "oklch(0.943 0.0296 38.56)",
-    fillEnd: "oklch(0.943 0.0296 38.56)",
-    textColor: "oklch(0 0 0)",
-    x: 70,
-    y: 14,
-    rot: 11,
-    size: 220,
-    delay: 0.1,
-    col: 1,
-    row: 0,
-  },
-  {
-    key: "service",
-    title: "Service",
-    Icon: figmaHeadphone,
-    accent: "oklch(0.683 0.2091 36.11)",
-    fillStart: "oklch(0.683 0.2091 36.11)",
-    fillEnd: "oklch(0.683 0.2091 36.11)",
-    textColor: "#ffffff",
-    x: 82,
-    y: 58,
-    rot: -7,
-    size: 190,
-    delay: 0.2,
-    col: 2,
-    row: 0,
-  },
-  {
-    key: "tech-stack",
-    title: "Tech Stack",
-    Icon: figmaTech,
-    accent: "oklch(0.943 0.0296 38.56)",
-    fillStart: "oklch(0.943 0.0296 38.56)",
-    fillEnd: "oklch(0.943 0.0296 38.56)",
-    textColor: "oklch(0 0 0)",
-    x: 8,
-    y: 62,
-    rot: 9,
-    size: 210,
-    delay: 0.15,
-    col: 0,
-    row: 1,
-  },
-  {
-    key: "vehicle-rd",
-    title: "Vehicle R&D",
-    Icon: figmaScooter,
-    accent: "oklch(0.683 0.2091 36.11)",
-    fillStart: "oklch(0.683 0.2091 36.11)",
-    fillEnd: "oklch(0.683 0.2091 36.11)",
-    textColor: "#ffffff",
-    x: 45,
-    y: 70,
-    rot: -16,
-    size: 230,
-    delay: 0.05,
-    col: 1,
-    row: 1,
-  },
-  {
-    key: "training",
-    title: "Training Programmes",
-    Icon: figmaEducation,
-    accent: "oklch(0.943 0.0296 38.56)",
-    fillStart: "oklch(0.943 0.0296 38.56)",
-    fillEnd: "oklch(0.943 0.0296 38.56)",
-    textColor: "oklch(0 0 0)",
-    x: 50,
-    y: 30,
-    rot: 6,
-    size: 180,
-    delay: 0.25,
-    col: 2,
-    row: 1,
-  },
-];
-
-// Puzzle tile shape via SVG path — square with knobs/holes per side.
-// Sides: top, right, bottom, left where 1 = knob (tab out), -1 = hole (in), 0 = flat.
-type Sides = [number, number, number, number];
-function piecePath(size: number, [t, r, b, l]: Sides) {
-  const s = size;
-  const k = size * 0.18; // knob radius
-  const m = size / 2;
-  const rc = 12; // corner radius
-
-  // Start at (rc, 0)
-  let d = `M ${rc} 0`;
-
-  // top edge
-  d += ` L ${m - k} 0`;
-  if (t !== 0) {
-    const sweep = t > 0 ? 1 : 0;
-    d += ` a ${k} ${k} 0 1 ${sweep} ${2 * k} 0`;
-  }
-  d += ` L ${s - rc} 0`;
-
-  // top-right corner
-  d += ` a ${rc} ${rc} 0 0 1 ${rc} ${rc}`;
-
-  // right edge
-  d += ` L ${s} ${m - k}`;
-  if (r !== 0) {
-    const sweep = r > 0 ? 1 : 0;
-    d += ` a ${k} ${k} 0 1 ${sweep} 0 ${2 * k}`;
-  }
-  d += ` L ${s} ${s - rc}`;
-
-  // bottom-right corner
-  d += ` a ${rc} ${rc} 0 0 1 ${-rc} ${rc}`;
-
-  // bottom edge (right -> left)
-  d += ` L ${m + k} ${s}`;
-  if (b !== 0) {
-    const sweep = b > 0 ? 1 : 0;
-    d += ` a ${k} ${k} 0 1 ${sweep} ${-2 * k} 0`;
-  }
-  d += ` L ${rc} ${s}`;
-
-  // bottom-left corner
-  d += ` a ${rc} ${rc} 0 0 1 ${-rc} ${-rc}`;
-
-  // left edge (bottom -> top)
-  d += ` L 0 ${m + k}`;
-  if (l !== 0) {
-    const sweep = l > 0 ? 1 : 0;
-    d += ` a ${k} ${k} 0 1 ${sweep} 0 ${-2 * k}`;
-  }
-  d += ` L 0 ${rc}`;
-
-  // top-left corner
-  d += ` a ${rc} ${rc} 0 0 1 ${rc} ${-rc}`;
-
-  d += ` Z`;
-  return d;
-}
-
-// Define sides per (col,row) so adjacent edges complement (knob/hole)
-function sidesFor(col: 0 | 1 | 2, row: 0 | 1): Sides {
-  // top, right, bottom, left
-  const top = row === 0 ? 0 : (col + row) % 2 === 0 ? -1 : 1;
-  const bottom = row === 1 ? 0 : (col + row + 1) % 2 === 0 ? 1 : -1;
-  const left = col === 0 ? 0 : (col + row) % 2 === 0 ? 1 : -1;
-  const right = col === 2 ? 0 : (col + row + 1) % 2 === 0 ? -1 : 1;
-  return [top, right, bottom, left];
-}
+import { PIECES } from "./PuzzleHeroPieces";
 
 export default function PuzzleHero() {
   const navigate = useNavigate();
@@ -317,7 +130,7 @@ export default function PuzzleHero() {
           <div className="flex items-center">
             <a
               href="#franchise"
-              className="ml-4 inline-flex items-center rounded-full bg-[#FF6A1A] px-4 py-2 text-sm font-semibold text-black shadow-sm hover:bg-[#ea5b0c] transition"
+              className="ml-4 inline-flex items-center rounded-md bg-[#FF6A1A] px-4 py-2 text-sm font-semibold text-black shadow-sm hover:bg-[#ea5b0c] transition"
             >
               Become A Partner
             </a>
@@ -343,11 +156,10 @@ export default function PuzzleHero() {
                 Mobility for{" "}
                 <span className="text-gradient-ev">Livelihoods</span>
               </h1>
-              {/* <p className="mt-4 text-base md:text-lg text-muted-foreground">
-                Building livelihoods through electric mobility, technology,
-                infrastructure, and franchise growth.
+              <p className="mt-4 text-base md:text-lg text-[var(--footer-text)]">
+                Transforming Mobility Into Economic Opputunity
               </p>
-              <div className="mt-4 flex items-center justify-center gap-3">
+              {/* <div className="mt-4 flex items-center justify-center gap-3"> 
                 <a
                   href="#franchise"
                   className="inline-flex items-center rounded-full bg-[#FF6A1A] px-5 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-[#ea5b0c] transition"
@@ -408,15 +220,14 @@ export default function PuzzleHero() {
       {/* Puzzle stage */}
       <div className="relative z-10 mx-auto max-w-7xl h-[78vh] md:h-[72vh]">
         {PIECES.map((p) => {
-          const sides = sidesFor(p.col, p.row);
-          const path = piecePath(TILE, sides);
           const id = `pp-${p.key}`;
 
-          // assembled position: center the 3x2 grid of TILE
-          const gridW = 3 * TILE + 2 * GAP;
-          const gridH = 2 * TILE + GAP;
-          const targetX = `calc(50% - ${gridW / 2}px + ${p.col * (TILE + GAP)}px)`;
-          const targetY = `calc(50% - ${gridH / 2}px + ${p.row * (TILE + GAP)}px)`;
+          // assembled position: center the 3x2 grid of base TILE (180px)
+          const BASE_TILE = 180;
+          const gridW = 3 * BASE_TILE + 2 * GAP;
+          const gridH = 2 * BASE_TILE + GAP;
+          const targetX = `calc(50% - ${gridW / 2}px + ${p.col * (BASE_TILE + GAP)}px + ${p.ox}px)`;
+          const targetY = `calc(50% - ${gridH / 2}px + ${p.row * (BASE_TILE + GAP)}px + ${p.oy}px)`;
 
           const scattered = phase === "scatter";
           const assembling =
@@ -426,7 +237,7 @@ export default function PuzzleHero() {
             <motion.button
               key={p.key}
               type="button"
-              aria-label={p.title}
+              aria-label={p.key as string}
               onClick={() => onPick(p.key)}
               className="absolute group focus:outline-none"
               initial={{
@@ -451,7 +262,7 @@ export default function PuzzleHero() {
                         left: targetX,
                         top: targetY,
                         rotate: 0,
-                        scale: phase === "depart" ? 0.2 : 1,
+                        scale: phase === "depart" ? 0.2 : 1.012,
                         opacity: phase === "depart" ? 0 : 1,
                         x: 0,
                         y: 0,
@@ -498,162 +309,17 @@ export default function PuzzleHero() {
               }
               whileTap={scattered ? { scale: 0.96 } : undefined}
               style={{
-                width: TILE,
-                height: TILE,
+                width: p.w,
+                height: p.h,
                 transformOrigin: "center",
                 zIndex: p.row * 3 + p.col + 1,
+                filter: scattered
+                  ? "drop-shadow(4px 10px 0px rgba(255, 90, 42, 0.35))"
+                  : "none",
+                transition: "filter 0.5s ease",
               }}
             >
-              <svg
-                width={TILE}
-                height={TILE}
-                viewBox={`0 0 ${TILE} ${TILE}`}
-                className="overflow-visible"
-                style={{
-                  filter: isFlat
-                    ? "drop-shadow(0 8px 16px rgba(0,0,0,0.4))"
-                    : `drop-shadow(0 12px 24px rgba(0,0,0,0.5)) drop-shadow(0 4px 8px rgba(0,0,0,0.3))`,
-                  transition: "filter 0.6s ease",
-                }}
-              >
-                <defs>
-                  <linearGradient
-                    id={`grad-${p.key}`}
-                    x1="0%"
-                    y1="0%"
-                    x2="100%"
-                    y2="100%"
-                  >
-                    <stop
-                      offset="0%"
-                      stopColor={
-                        p.textColor === "#ffffff" ? "#FF8C55" : "#FFFFFF"
-                      }
-                    />
-                    <stop
-                      offset="45%"
-                      stopColor={
-                        p.textColor === "#ffffff" ? "#FF6B2B" : "#FDF4E8"
-                      }
-                    />
-                    <stop
-                      offset="100%"
-                      stopColor={
-                        p.textColor === "#ffffff" ? "#D84A10" : "#F5E8D0"
-                      }
-                    />
-                  </linearGradient>
-                  <linearGradient
-                    id={`hl-${p.key}`}
-                    x1="0%"
-                    y1="0%"
-                    x2="70%"
-                    y2="70%"
-                  >
-                    <stop offset="0%" stopColor="#ffffff" stopOpacity="0.2" />
-                    <stop offset="60%" stopColor="#ffffff" stopOpacity="0.03" />
-                    <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
-                  </linearGradient>
-                  <clipPath id={`clip-${p.key}`}>
-                    <path d={path} />
-                  </clipPath>
-                </defs>
-
-                {/* Layer 1: deepest shadow — fades out when flat */}
-                <motion.path
-                  d={path}
-                  fill={p.textColor === "#ffffff" ? "#3B0F02" : "#C8A882"}
-                  transform="translate(-7, 11)"
-                  animate={{
-                    opacity: isFlat
-                      ? 0
-                      : p.textColor === "#ffffff"
-                        ? 0.75
-                        : 0.85,
-                  }}
-                  transition={{ duration: 0.6 }}
-                />
-
-                {/* Layer 2: mid shadow — orange only, skipped for cream */}
-                {p.textColor === "#ffffff" && (
-                  <motion.path
-                    d={path}
-                    fill="#7A2808"
-                    transform="translate(-4, 7)"
-                    animate={{ opacity: isFlat ? 0 : 0.9 }}
-                    transition={{ duration: 0.6 }}
-                  />
-                )}
-
-                {/* Layer 3: upper side face — fades out when flat */}
-                <motion.path
-                  d={path}
-                  fill={p.textColor === "#ffffff" ? "#C04010" : "#EED8B8"}
-                  transform={
-                    p.textColor === "#ffffff"
-                      ? "translate(-2, 3)"
-                      : "translate(-2, 4)"
-                  }
-                  animate={{ opacity: isFlat ? 0 : 1 }}
-                  transition={{ duration: 0.6 }}
-                />
-
-                {/* Layer 4: top face with gradient — stays visible when flat */}
-                <motion.path
-                  d={path}
-                  fill={`url(#grad-${p.key})`}
-                  stroke={p.textColor === "#ffffff" ? "#FF9966" : "#DEC8A0"}
-                  strokeWidth="0.8"
-                  animate={{
-                    strokeOpacity: isFlat
-                      ? 0
-                      : p.textColor === "#ffffff"
-                        ? 0.7
-                        : 0.8,
-                  }}
-                  transition={{ duration: 0.6 }}
-                />
-
-                {/* Layer 5: highlight sheen — fades out when flat */}
-                <motion.path
-                  d={path}
-                  fill={`url(#hl-${p.key})`}
-                  clipPath={`url(#clip-${p.key})`}
-                  animate={{ opacity: isFlat ? 0 : 1 }}
-                  transition={{ duration: 0.6 }}
-                />
-
-                {/* Layer 6: thin bright bevel — fades out when flat */}
-                <motion.path
-                  d={path}
-                  fill="none"
-                  stroke="#ffffff"
-                  strokeWidth="1.5"
-                  clipPath={`url(#clip-${p.key})`}
-                  animate={{ opacity: isFlat ? 0 : 0.22 }}
-                  transition={{ duration: 0.6 }}
-                />
-              </svg>
-
-              {/* content overlay */}
-              <div
-                className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center text-center p-4"
-                style={{ transform: `rotate(0deg)` }}
-              >
-                <div className="mb-3 inline-flex items-center justify-center">
-                  <p.Icon
-                    className="w-[55px] h-[55px]"
-                    style={{ color: p.textColor }}
-                    strokeWidth={2.2}
-                  />
-                </div>
-                <div
-                  className="text-sm font-semibold uppercase tracking-[0.16em] whitespace-pre-line"
-                  style={{ color: p.textColor }}
-                >
-                  {p.title}
-                </div>
-              </div>
+              <p.Component className="w-full h-full" />
             </motion.button>
           );
         })}

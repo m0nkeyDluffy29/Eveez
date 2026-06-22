@@ -68,6 +68,7 @@
   --border: oklch(1 0 0 / 0.08);
   --input: oklch(1 0 0 / 0.1);
   --ring: oklch(0.74 0.19 55 / 0.6);
+  --nw-orange: oklch(0.683 0.2091 36.11);
 
   --ev-orange: oklch(0.74 0.19 55);
   --ev-green: oklch(0.78 0.18 152);
