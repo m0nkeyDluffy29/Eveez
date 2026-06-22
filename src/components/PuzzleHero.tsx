@@ -1,13 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useNavigate } from "@tanstack/react-router";
-import figmaStore from "./icons/figma-store";
-import figmaBolt from "./icons/figma-bolt";
-import figmaHeadphone from "./icons/figma-headphone";
-import figmaTech from "./icons/figma-tech";
-import figmaScooter from "./icons/figma-scooter";
-import figmaEducation from "./icons/figma-education";
-import { VERTICALS, type VerticalKey } from "./SectionShell";
+import logo from "../../assets/icons/eveez-logo.png";
+import { type VerticalKey } from "./SectionShell";
 import { PIECES } from "./PuzzleHeroPieces";
 
 export default function PuzzleHero() {
@@ -31,9 +26,9 @@ export default function PuzzleHero() {
     setTarget(k);
     setPhase("assemble");
     // sequence
-    window.setTimeout(() => setPhase("logo"), 1300);
-    window.setTimeout(() => setPhase("depart"), 2300);
-    window.setTimeout(() => navigate({ to: `/${k}` as never }), 2700);
+    window.setTimeout(() => setPhase("logo"), 3300);
+    window.setTimeout(() => setPhase("depart"), 3300);
+    window.setTimeout(() => navigate({ to: `/${k}` as never }), 3300);
   }
 
   // Tile size in assembled state
@@ -79,7 +74,7 @@ export default function PuzzleHero() {
               E
             </motion.span> */}
             <img
-              src="/assets/icons/eveez-logo.png"
+              src={logo}
               alt="EVeez"
               className="h-15 w-auto object-contain"
               loading="lazy"
@@ -319,7 +314,9 @@ export default function PuzzleHero() {
                 transition: "filter 0.5s ease",
               }}
             >
-              <p.Component className="w-full h-full" />
+              <p.Component
+                className={`w-full h-full${assembling ? " [&_g]:!filter-none" : ""}`}
+              />
             </motion.button>
           );
         })}
