@@ -18,12 +18,6 @@ const partners = [
   { name: "News Voir", logo: ny },
   { name: "SME street", logo: sme },
 ];
-import figmaStore from "./icons/figma-store";
-import figmaBolt from "./icons/figma-bolt";
-import figmaHeadphone from "./icons/figma-headphone";
-import figmaTech from "./icons/figma-tech";
-import figmaScooter from "./icons/figma-scooter";
-import figmaEducation from "./icons/figma-education";
 // Duplicate for seamless loop
 const doubled = [...partners, ...partners];
 
@@ -68,7 +62,7 @@ export default function NewsMediaCoverage() {
 
         {/* Slider */}
         <div className="overflow-hidden">
-          <div ref={trackRef} className="flex items-center gap-10 w-max">
+          <div ref={trackRef} className="flex items-center gap-5 w-max">
             {doubled.map((partner, i) => (
               <img
                 key={`${partner.name}-${i}`}

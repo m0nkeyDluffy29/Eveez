@@ -6,6 +6,8 @@ import WhyEveezWins from "@/components/WhyEveezWins";
 import NewsMediaCoverage from "@/components/NewsMediaCoverage";
 import FooterSection from "@/components/FooterSection";
 import StatsSection from "@/components/stats";
+import ScalingOpportunities from "@/components/ScalingOpportunities";
+import PartnerTestimonials from "@/components/testimonial";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -31,7 +33,9 @@ export const Route = createFileRoute("/")({
       <PuzzleHero />
       <StatsSection />
       <EnvironmentalImpact />
+      <ScalingOpportunities />
       <WhyEveezWins />
+      <PartnerTestimonials />
       {/* <EveezEcosystem /> */}
       <NewsMediaCoverage />
       <FooterSection />

@@ -169,7 +169,10 @@ export default function EnvironmentalImpact() {
                 />
               </div>
 
-              <div className="text-3xl md:text-4xl font-semibold tracking-tight text-white">
+              <div
+                className="text-3xl md:text-4xl font-bold tracking-tight text-white"
+                style={{ fontFamily: "Sora, sans-serif" }}
+              >
                 {display[i] ?? s.value}
               </div>
               <div className="mt-2 text-sm text-[var(--footer-text)]">

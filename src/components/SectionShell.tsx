@@ -1,5 +1,6 @@
 import { Link, useRouter } from "@tanstack/react-router";
 import { ReactNode } from "react";
+import logo from "../../assets/icons/eveez-logo-1.png";
 
 export type VerticalKey =
   | "franchise"
@@ -88,7 +89,7 @@ export function SectionShell({
         <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 group">
             <img
-              src="../../assets/icons/eveez-logo.png"
+              src={logo}
               alt="EVeez"
               className="h-15 w-auto object-contain"
               loading="lazy"

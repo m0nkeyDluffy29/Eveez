@@ -1,4 +1,5 @@
 import { Rss, Share2 } from "lucide-react";
+import logo1 from "../../assets/icons/eveez-logo.png";
 
 export default function FooterSection() {
   return (
@@ -6,10 +7,8 @@ export default function FooterSection() {
       <div className="mx-auto max-w-7xl px-6 py-20">
         <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
           <div>
-            <p className="text-xl font-semibold tracking-[0.3em] text-orange-500">
-              EVeez
-            </p>
-            <p className="mt-5 max-w-md text-sm leading-7 text-[var(--footer-text)]">
+            <img src={logo1} alt="EVeez" className="h-10 w-auto" />
+            <p className="mt-5 max-w-md text-sm leading-7 text-white">
               Accelerating India's transition to sustainable electric mobility
               through full-stack hardware and software innovation.
             </p>
@@ -19,7 +18,7 @@ export default function FooterSection() {
             <p className="text-[11px] uppercase tracking-[0.28em] text-[var(--footer-text)]">
               Platform
             </p>
-            <ul className="mt-5 space-y-3 text-sm text-[var(--footer-text)]">
+            <ul className="mt-5 space-y-3 text-sm text-white">
               <li>Ecosystem</li>
               <li>Vehicle Specs</li>
               <li>Tech Stack</li>
@@ -30,7 +29,7 @@ export default function FooterSection() {
             <p className="text-[11px] uppercase tracking-[0.28em] text-[var(--footer-text)]">
               Company
             </p>
-            <ul className="mt-5 space-y-3 text-sm text-[var(--footer-text)]">
+            <ul className="mt-5 space-y-3 text-sm text-white">
               <li>About Us</li>
               <li>Press Kit</li>
               <li>Contact Us</li>
