@@ -77,7 +77,7 @@ export default function ScalingOpportunities() {
           {CITIES.map((city) => (
             <div
               key={city.name}
-              className="flex w-[104px] sm:w-[110px] md:w-[112px] flex-col items-center justify-center gap-2 rounded-xl border border-neutral-800 bg-neutral-900/60 px-3 py-5 transition-colors hover:border-[#ff5a2a]/40 hover:bg-neutral-900"
+              className="flex w-[104px] sm:w-[110px] md:w-[112px] flex-col items-center justify-center gap-2 rounded-[5px] border border-neutral-800 bg-neutral-900/60 px-5 py-5 transition-colors hover:border-[#ff5a2a]/40 hover:bg-neutral-900"
             >
               <city.Icon className="h-12 w-12" />
               <span className="text-[15px] font-medium text-[#ff5a2a]">

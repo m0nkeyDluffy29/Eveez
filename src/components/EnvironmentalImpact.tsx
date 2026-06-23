@@ -137,7 +137,7 @@ export default function EnvironmentalImpact() {
       className="mx-auto max-w-[106rem] px-6 py-20 bg"
     >
       <div className="max-w-3xl mx-auto text-center">
-        <div className="text-[25px] uppercase tracking-[0.3em] text-white font-display">
+        <div className="text-[36px] font-semibold uppercase tracking-[0.1em]  text-white font-display">
           ENVIRONMENTAL IMPACT
         </div>
         <p className="mt-2 text-sm text-white font-display">
