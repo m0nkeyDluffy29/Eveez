@@ -134,19 +134,13 @@ export default function EnvironmentalImpact() {
   return (
     <section
       ref={(el) => (rootRef.current = el)}
-      className="mx-auto max-w-7xl px-6 py-20 bg"
+      className="mx-auto max-w-[106rem] px-6 py-20 bg"
     >
       <div className="max-w-3xl mx-auto text-center">
-        <div
-          className="text-[25px] uppercase tracking-[0.3em] text-white"
-          style={{ fontFamily: "Sora, sans-serif" }}
-        >
+        <div className="text-[25px] uppercase tracking-[0.3em] text-white font-display">
           ENVIRONMENTAL IMPACT
         </div>
-        <p
-          className="mt-2 text-sm text-white"
-          style={{ fontFamily: "Sora, sans-serif" }}
-        >
+        <p className="mt-2 text-sm text-white font-display">
           Our Collective Impact
         </p>
       </div>
@@ -160,8 +154,7 @@ export default function EnvironmentalImpact() {
               className="rounded-2xl border border-border bg-surface/60 p-6 flex flex-col items-center text-center bg-neutral-900/50"
             >
               <div
-                className={`mb-4 inline-flex h-[70px] w-[70px] items-center justify-center rounded-lg ${s.color}`}
-                style={{ boxShadow: `0 8px 24px -12px rgba(0,0,0,0.6)` }}
+                className={`mb-4 inline-flex h-[70px] w-[70px] items-center justify-center rounded-lg shadow-[0_8px_24px_-12px_rgba(0,0,0,0.6)] ${s.color}`}
               >
                 <Icon
                   className="h-[55px] w-[55px] text-white"
@@ -169,10 +162,7 @@ export default function EnvironmentalImpact() {
                 />
               </div>
 
-              <div
-                className="text-3xl md:text-4xl font-bold tracking-tight text-white"
-                style={{ fontFamily: "Sora, sans-serif" }}
-              >
+              <div className="text-3xl md:text-4xl font-bold tracking-tight text-white font-display">
                 {display[i] ?? s.value}
               </div>
               <div className="mt-2 text-sm text-[var(--footer-text)]">

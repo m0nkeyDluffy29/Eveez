@@ -47,7 +47,7 @@
   --foreground: oklch(0.98 0.005 250);
   --background-secondary: oklch(0.1647 0.0042 285.94);
   --background-primary: oklch(0.1876 0.004 286.01);
-  --footer-text: oklch(0.8318 0.046 35.15);
+  --footer-text: oklch(0.9488 0.0091 34.3);
 
   --card: oklch(0.22 0.025 255 / 0.5);
   --card-foreground: oklch(0.98 0.005 250);

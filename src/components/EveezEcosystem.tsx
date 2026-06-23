@@ -41,7 +41,7 @@
 
 // export default function EveezEcosystem() {
 //   return (
-//     <section className="mx-auto max-w-7xl px-6 py-20">
+//     <section className="mx-auto max-w-[106rem] px-6 py-20">
 //       <div className="max-w-3xl mx-auto text-center">
 //         <div className="text-[11px] uppercase tracking-[0.3em] text-[var(--ev-orange)]">
 //           THE EVEEZ ECOSYSTEM

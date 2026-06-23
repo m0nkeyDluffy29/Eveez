@@ -63,12 +63,12 @@ const CITIES: City[] = [
 export default function ScalingOpportunities() {
   return (
     <section className="bg-black py-20">
-      <div className="mx-auto max-w-7xl px-6 text-center">
+      <div className="mx-auto max-w-[106rem] px-6 text-center">
         {/* Heading */}
         <h2 className="text-3xl md:text-4xl font-semibold text-white">
           Scaling Opportunities in <span className="text-[#ff5a2a]">India</span>
         </h2>
-        <p className="mt-3 text-sm md:text-base text-neutral-400">
+        <p className="mt-3 text-sm md:text-base text-[var(--footer-text)]">
           Powering the next wave of mobility and entrepreneurship.
         </p>
 

@@ -33,15 +33,18 @@ export default function PuzzleHero() {
   return (
     <div
       ref={containerRef}
-      className="relative min-h-screen overflow-hidden bg-neutral-950"
-      style={{
-        backgroundImage: `
-      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)
-    `,
-        backgroundSize: "40px 40px",
-      }}
+      className="relative min-h-[75vh] overflow-hidden bg-neutral-950"
     >
+      {/* Video background */}
+      <video
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover z-0"
+        src="/video/0_Abstract_Background_1920x1080.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        disablePictureInPicture
+      />
       <div
         className="pointer-events-none absolute bottom-0 right-0 z-0"
         style={{
@@ -53,7 +56,7 @@ export default function PuzzleHero() {
       />
       {/* Top nav (in-hero) */}
       <header className="relative z-30 border-b-2 border-orange bg-neutral-950">
-        <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
+        <div className="mx-auto max-w-[106rem] px-6 h-16 flex items-center justify-between">
           {/* left: logo */}
           <a href="/" className="flex items-center gap-2">
             {/* <motion.span
@@ -138,7 +141,7 @@ export default function PuzzleHero() {
       </div>
 
       {/* Puzzle stage */}
-      <div className="relative z-10 mx-auto w-full h-[78vh] md:h-[72vh] flex items-center justify-center overflow-visible pointer-events-none">
+      <div className="relative z-10 mx-auto w-full h-[45vh] md:h-[45vh] flex items-center justify-center overflow-visible pointer-events-none">
         <div className="relative w-[1000px] h-[600px] scale-[0.35] sm:scale-[0.6] md:scale-100 flex-shrink-0 origin-center pointer-events-none [&>*]:pointer-events-auto">
           {PIECES.map((p) => {
             const id = `pp-${p.key}`;
@@ -160,7 +163,7 @@ export default function PuzzleHero() {
                 type="button"
                 aria-label={p.key as string}
                 onClick={() => onPick(p.key)}
-                className="absolute group focus:outline-none"
+                className="absolute group focus:outline-none cursor-pointer"
                 initial={{
                   left: `${p.x}%`,
                   top: `${p.y}%`,

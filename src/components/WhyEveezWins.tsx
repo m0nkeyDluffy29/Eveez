@@ -25,12 +25,9 @@ const cards = [
 
 export default function WhyEveezWins() {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-20">
+    <section className="mx-auto max-w-[106rem] px-6 py-20">
       <div className="max-w-3xl mx-auto text-center">
-        <h2
-          className="text-3xl md:text-4xl font-semibold tracking-tight text-white"
-          style={{ fontFamily: "Sora, sans-serif" }}
-        >
+        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-white font-display">
           Why EVEEZ Wins
         </h2>
         <p className="mt-3 text-base text-[var(--footer-text)]">

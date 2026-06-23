@@ -86,7 +86,7 @@ export function SectionShell({
     <div className="relative min-h-screen bg-black text-white">
       {/* ── Navbar ── */}
       <header className="relative z-30 border-b-2 border-orange bg-black">
-        <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
+        <div className="mx-auto max-w-[106rem] px-6 h-16 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 group">
             <img
               src={logo}
@@ -120,7 +120,7 @@ export function SectionShell({
       </header>
 
       {/* ── Main ── */}
-      <main className="relative mx-auto max-w-7xl px-6">
+      <main className="relative mx-auto max-w-[106rem] px-6">
         {!hideHero && (
           <div className="mb-12 mt-12">
             <div
@@ -134,17 +134,11 @@ export function SectionShell({
               {v.tag}
             </div>
 
-            <h1
-              className="mt-5 text-5xl md:text-7xl font-semibold leading-[1.05]"
-              style={{ fontFamily: "Sora, sans-serif" }}
-            >
+            <h1 className="mt-5 text-5xl md:text-7xl font-semibold leading-[1.05] font-display">
               <span className="text-gradient-ev">{v.pageTitle}</span>
             </h1>
 
-            <p
-              className="mt-4 max-w-2xl text-lg text-muted-foreground "
-              style={{ fontFamily: "Sora, sans-serif" }}
-            >
+            <p className="mt-4 max-w-2xl text-lg text-muted-foreground font-display">
               {v.tagline}
             </p>
           </div>

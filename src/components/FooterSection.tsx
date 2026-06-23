@@ -8,7 +8,7 @@ import logo1 from "../../assets/icons/eveez-logo.png";
 export default function FooterSection() {
   return (
     <section className="relative left-1/2 right-1/2 w-screen -translate-x-1/2 mt-auto bg-neutral-950 text-neutral-300 border-t-2 border-orange-500">
-      <div className="mx-auto max-w-7xl px-6 py-20">
+      <div className="mx-auto max-w-[106rem] px-6 py-20">
         <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
           <div>
             <img src={logo1} alt="EVeez" className="h-10 w-auto" />
@@ -23,9 +23,30 @@ export default function FooterSection() {
               Platform
             </p>
             <ul className="mt-5 space-y-3 text-sm text-white">
-              <li>Ecosystem</li>
-              <li>Vehicle Specs</li>
-              <li>Tech Stack</li>
+              <li>
+                <a
+                  href="#"
+                  className="hover:text-[var(--ev-orange)] transition"
+                >
+                  Ecosystem
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="hover:text-[var(--ev-orange)] transition"
+                >
+                  Vehicle Specs
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="hover:text-[var(--ev-orange)] transition"
+                >
+                  Tech Stack
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -34,9 +55,30 @@ export default function FooterSection() {
               Company
             </p>
             <ul className="mt-5 space-y-3 text-sm text-white">
-              <li>About Us</li>
-              <li>Press Kit</li>
-              <li>Contact Us</li>
+              <li>
+                <a
+                  href="#"
+                  className="hover:text-[var(--ev-orange)] transition"
+                >
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="hover:text-[var(--ev-orange)] transition"
+                >
+                  Press Kit
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="hover:text-[var(--ev-orange)] transition"
+                >
+                  Contact Us
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -45,19 +87,39 @@ export default function FooterSection() {
               Connect
             </p>
             <div className="mt-5 flex items-center gap-4">
-              <a href="#" aria-label="WhatsApp">
+              <a
+                href="#"
+                aria-label="WhatsApp"
+                className="hover:text-[var(--ev-orange)] transition"
+              >
                 <FigmaWhatsapp className="h-5 w-5" />
               </a>
-              <a href="#" aria-label="LinkedIn">
+              <a
+                href="#"
+                aria-label="LinkedIn"
+                className="hover:text-[var(--ev-orange)] transition"
+              >
                 <FigmaLinkedin className="h-5 w-5" />
               </a>
-              <a href="#" aria-label="Instagram">
+              <a
+                href="#"
+                aria-label="Instagram"
+                className="hover:text-[var(--ev-orange)] transition"
+              >
                 <FigmaInstagram className="h-5 w-5" />
               </a>
-              <a href="#" aria-label="Facebook">
+              <a
+                href="#"
+                aria-label="Facebook"
+                className="hover:text-[var(--ev-orange)] transition"
+              >
                 <FigmaFacebook className="h-5 w-5" />
               </a>
-              <a href="#" aria-label="YouTube">
+              <a
+                href="#"
+                aria-label="YouTube"
+                className="hover:text-[var(--ev-orange)] transition"
+              >
                 <FigmaYoutube className="h-5 w-5" />
               </a>
             </div>
@@ -67,7 +129,7 @@ export default function FooterSection() {
       </div>
 
       <div className="border-t border-white/10 py-6">
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 text-sm text-neutral-500 md:flex-row md:items-center md:justify-between">
+        <div className="mx-auto flex max-w-[106rem] flex-col gap-3 px-6 text-sm text-neutral-500 md:flex-row md:items-center md:justify-between">
           <div className="flex flex-wrap items-center justify-center gap-4 md:justify-start">
             <span className="text-neutral-400 hover:text-white transition cursor-pointer">
               Privacy Policy

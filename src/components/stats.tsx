@@ -77,7 +77,7 @@ function StatCard({ label, target, suffix = "" }: Stat) {
 export default function StatsSection() {
   return (
     <section className="bg-black py-16">
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-[106rem] px-6">
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
           {STATS.map((s) => (
             <StatCard key={s.label} {...s} />

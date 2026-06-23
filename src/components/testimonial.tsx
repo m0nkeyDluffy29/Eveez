@@ -73,12 +73,12 @@ function renderQuoteWithHighlight(quote: string, highlights: string[]) {
 export default function PartnerTestimonials() {
   return (
     <section className="bg-black py-20">
-      <div className="mx-auto max-w-7xl px-6 text-center">
+      <div className="mx-auto max-w-[106rem] px-6 text-center">
         {/* Heading */}
         <h2 className="text-3xl md:text-4xl font-semibold text-white">
           What Our <span className="text-[#ff5a2a]">Partners Say</span>
         </h2>
-        <p className="mt-3 text-sm md:text-base text-neutral-400">
+        <p className="mt-3 text-sm md:text-base text-[var(--footer-text)]">
           Stories from the frontlines of the mobility revolution.
         </p>
 

@@ -99,7 +99,7 @@ function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto max-w-7xl px-5 lg:px-8 h-16 flex items-center justify-between">
+      <div className="mx-auto max-w-[106rem] px-5 lg:px-8 h-16 flex items-center justify-between">
         <Link to="/landing" className="flex items-center gap-2">
           <span className="relative inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#FF6A1A] to-[#16A34A] text-white font-bold shadow-lg shadow-orange-500/20">
             E
@@ -182,7 +182,7 @@ function Hero() {
         </svg>
       </div>
 
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
+      <div className="mx-auto max-w-[106rem] px-5 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -269,7 +269,7 @@ function FranchiseSection() {
   const [submitted, setSubmitted] = useState(false);
   return (
     <section id="franchise" className="relative py-20 lg:py-28">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
+      <div className="mx-auto max-w-[106rem] px-5 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           <div>
             <span className="inline-flex items-center gap-2 rounded-full bg-orange-50 text-orange-700 px-3 py-1 text-xs font-medium">
@@ -401,7 +401,7 @@ function RidersSection() {
   ];
   return (
     <section id="riders" className="py-20 lg:py-28 bg-neutral-50/60">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
+      <div className="mx-auto max-w-[106rem] px-5 lg:px-8">
         <div className="max-w-2xl">
           <span className="inline-flex items-center gap-2 rounded-full bg-emerald-50 text-emerald-700 px-3 py-1 text-xs font-medium">
             <Zap className="h-3.5 w-3.5" /> For Riders
@@ -472,7 +472,7 @@ function ImpactSection() {
   return (
     <section id="impact" className="relative py-20 lg:py-28 overflow-hidden">
       <div className="absolute inset-0 -z-10 bg-gradient-to-br from-emerald-50 via-white to-orange-50" />
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
+      <div className="mx-auto max-w-[106rem] px-5 lg:px-8">
         <div className="text-center max-w-2xl mx-auto">
           <span className="inline-flex items-center gap-2 rounded-full bg-emerald-100 text-emerald-700 px-3 py-1 text-xs font-medium">
             <Leaf className="h-3.5 w-3.5" /> Real impact
@@ -582,7 +582,7 @@ function TestimonialsSection() {
 
   return (
     <section className="py-20 lg:py-28 bg-neutral-50/60">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
+      <div className="mx-auto max-w-[106rem] px-5 lg:px-8">
         <div className="max-w-2xl">
           <span className="inline-flex items-center gap-2 rounded-full bg-orange-50 text-orange-700 px-3 py-1 text-xs font-medium">
             Voices of EVeez
@@ -623,7 +623,7 @@ function TestimonialsSection() {
 function AboutSection() {
   return (
     <section id="about" className="py-20 lg:py-28">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
+      <div className="mx-auto max-w-[106rem] px-5 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
         <div>
           <span className="inline-flex items-center gap-2 rounded-full bg-neutral-100 text-neutral-700 px-3 py-1 text-xs font-medium">
             About EVeez
@@ -698,7 +698,7 @@ function AboutSection() {
 function ContactSection() {
   return (
     <section id="contact" className="py-20 lg:py-28 bg-neutral-50/60">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8 grid lg:grid-cols-2 gap-10 lg:gap-16">
+      <div className="mx-auto max-w-[106rem] px-5 lg:px-8 grid lg:grid-cols-2 gap-10 lg:gap-16">
         <div>
           <span className="inline-flex items-center gap-2 rounded-full bg-orange-50 text-orange-700 px-3 py-1 text-xs font-medium">
             Get in touch
@@ -805,7 +805,7 @@ function ContactSection() {
 function FooterBlock() {
   return (
     <footer className="bg-neutral-950 text-neutral-300">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8 py-14 grid md:grid-cols-4 gap-10">
+      <div className="mx-auto max-w-[106rem] px-5 lg:px-8 py-14 grid md:grid-cols-4 gap-10">
         <div>
           <div className="flex items-center gap-2">
             <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#FF6A1A] to-[#16A34A] text-white font-bold">
