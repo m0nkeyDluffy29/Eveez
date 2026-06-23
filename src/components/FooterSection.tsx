@@ -1,4 +1,8 @@
-import { Rss, Share2 } from "lucide-react";
+import FigmaWhatsapp from "../../assets/social/figma-whatsapp";
+import FigmaLinkedin from "../../assets/social/figma-linkedin";
+import FigmaInstagram from "../../assets/social/figma-instagram";
+import FigmaFacebook from "../../assets/social/figma-facebook";
+import FigmaYoutube from "../../assets/social/figma-youtube";
 import logo1 from "../../assets/icons/eveez-logo.png";
 
 export default function FooterSection() {
@@ -40,20 +44,24 @@ export default function FooterSection() {
             <p className="text-[11px] uppercase tracking-[0.28em] text-[var(--footer-text)]">
               Connect
             </p>
-            <div className="mt-5 flex items-center gap-3">
-              <button
-                type="button"
-                className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white transition hover:bg-white/10"
-              >
-                <Share2 className="h-4 w-4" />
-              </button>
-              <button
-                type="button"
-                className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white transition hover:bg-white/10"
-              >
-                <Rss className="h-4 w-4" />
-              </button>
+            <div className="mt-5 flex items-center gap-4">
+              <a href="#" aria-label="WhatsApp">
+                <FigmaWhatsapp className="h-5 w-5" />
+              </a>
+              <a href="#" aria-label="LinkedIn">
+                <FigmaLinkedin className="h-5 w-5" />
+              </a>
+              <a href="#" aria-label="Instagram">
+                <FigmaInstagram className="h-5 w-5" />
+              </a>
+              <a href="#" aria-label="Facebook">
+                <FigmaFacebook className="h-5 w-5" />
+              </a>
+              <a href="#" aria-label="YouTube">
+                <FigmaYoutube className="h-5 w-5" />
+              </a>
             </div>
+            <p className="mt-5 text-xs text-white">© 2026 EVEEZ MOBILITY</p>
           </div>
         </div>
       </div>
