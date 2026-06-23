@@ -25,7 +25,7 @@ export const PIECES: Piece[] = [
   {
     key: "franchise",
     Component: puzzleFranchise,
-    x: 12,
+    x: 4,
     y: 18,
     rot: -14,
     delay: 0.0,
@@ -39,7 +39,7 @@ export const PIECES: Piece[] = [
   {
     key: "fast-charging",
     Component: puzzleFastCharging,
-    x: 70,
+    x: 62,
     y: 14,
     rot: 11,
     delay: 0.1,
@@ -53,7 +53,7 @@ export const PIECES: Piece[] = [
   {
     key: "service",
     Component: puzzleService,
-    x: 82,
+    x: 74,
     y: 58,
     rot: -7,
     delay: 0.2,
@@ -67,7 +67,7 @@ export const PIECES: Piece[] = [
   {
     key: "tech-stack",
     Component: puzzleTechStack,
-    x: 8,
+    x: 0,
     y: 62,
     rot: 9,
     delay: 0.15,
@@ -81,7 +81,7 @@ export const PIECES: Piece[] = [
   {
     key: "vehicle-rd",
     Component: puzzleVehicle,
-    x: 45,
+    x: 37,
     y: 70,
     rot: -16,
     delay: 0.05,
@@ -95,7 +95,7 @@ export const PIECES: Piece[] = [
   {
     key: "training",
     Component: puzzleTraining,
-    x: 40,
+    x: 32,
     y: 10,
     rot: -4,
     delay: 0.25,
