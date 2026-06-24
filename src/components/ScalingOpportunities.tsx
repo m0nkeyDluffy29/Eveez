@@ -62,10 +62,10 @@ const CITIES: City[] = [
 
 export default function ScalingOpportunities() {
   return (
-    <section className="bg-black py-20">
+    <section className="bg-black py-10 md:py-20">
       <div className="mx-auto max-w-[106rem] px-6 text-center">
         {/* Heading */}
-        <h2 className="text-3xl md:text-4xl font-semibold text-white">
+        <h2 className="text-2xl md:text-4xl font-semibold text-white">
           Scaling Opportunities in <span className="text-[#ff5a2a]">India</span>
         </h2>
         <p className="mt-3 text-sm md:text-base text-[var(--footer-text)]">
@@ -73,11 +73,11 @@ export default function ScalingOpportunities() {
         </p>
 
         {/* City grid — flex-wrap centers the partial last row */}
-        <div className="mt-12 flex flex-wrap justify-center gap-3">
+        <div className="mt-12 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:justify-center">
           {CITIES.map((city) => (
             <div
               key={city.name}
-              className="flex w-[104px] sm:w-[110px] md:w-[112px] flex-col items-center justify-center gap-2 rounded-[5px] border border-neutral-800 bg-neutral-900/60 px-5 py-5 transition-colors hover:border-[#ff5a2a]/40 hover:bg-neutral-900"
+              className="flex w-full sm:w-[110px] md:w-[160px] flex-col items-center justify-center gap-2 rounded-[5px] border border-neutral-800 bg-neutral-900/60 px-5 py-5 transition-colors hover:border-[#ff5a2a]/40 hover:bg-neutral-900"
             >
               <city.Icon className="h-12 w-12" />
               <span className="text-[15px] font-medium text-[#ff5a2a]">

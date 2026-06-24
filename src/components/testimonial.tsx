@@ -2,6 +2,7 @@ import * as React from "react";
 import FigmaRajesh from "./avatar/figma-rajesh";
 import FigmaAnanya from "./avatar/figma-ananya";
 import FigmaVikram from "./avatar/figma-vikram";
+import FigmaQuotes from "../../assets/social/figma-quotes";
 
 type AvatarComponent = React.ComponentType<React.SVGProps<SVGSVGElement>>;
 
@@ -72,10 +73,10 @@ function renderQuoteWithHighlight(quote: string, highlights: string[]) {
 
 export default function PartnerTestimonials() {
   return (
-    <section className="bg-black py-20">
+    <section className="bg-black py-10 md:py-20">
       <div className="mx-auto max-w-[106rem] px-6 text-center">
         {/* Heading */}
-        <h2 className="text-3xl md:text-4xl font-semibold text-white">
+        <h2 className="text-2xl md:text-4xl font-semibold text-white">
           What Our <span className="text-[#ff5a2a]">Partners Say</span>
         </h2>
         <p className="mt-3 text-sm md:text-base text-[var(--footer-text)]">
@@ -87,11 +88,9 @@ export default function PartnerTestimonials() {
           {TESTIMONIALS.map((t) => (
             <div
               key={t.name}
-              className="rounded-2xl border border-neutral-800 bg-neutral-900/60 p-6 flex flex-col"
+              className="rounded-[12px] border border-neutral-800 bg-neutral-900/60 p-6 flex flex-col"
             >
-              <div className="text-3xl font-serif text-[#ff5a2a] leading-none mb-3">
-                &rdquo;&rdquo;
-              </div>
+              <FigmaQuotes className="mb-3" />
 
               <p className="text-sm italic text-neutral-300 leading-relaxed flex-1">
                 &ldquo;{renderQuoteWithHighlight(t.quote, t.highlight)}&rdquo;

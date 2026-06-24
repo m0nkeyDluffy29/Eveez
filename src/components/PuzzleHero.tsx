@@ -10,8 +10,18 @@ export default function PuzzleHero() {
     "scatter" | "assemble" | "logo" | "depart"
   >("scatter");
   const [target, setTarget] = useState<VerticalKey | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [mouse, setMouse] = useState({ x: -500, y: -500 });
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const NAV_LINKS = [
+    { label: "Franchise", href: "#" },
+    { label: "Fast Charging", href: "#" },
+    { label: "Service", href: "#" },
+    { label: "Tech Stack", href: "#" },
+    { label: "Vehicle R&D", href: "#" },
+    { label: "Training Programmes", href: "#" },
+  ];
 
   useEffect(() => {
     const onMove = (e: MouseEvent) => setMouse({ x: e.clientX, y: e.clientY });
@@ -33,7 +43,7 @@ export default function PuzzleHero() {
   return (
     <div
       ref={containerRef}
-      className="relative min-h-[75vh] overflow-hidden bg-neutral-950"
+      className="relative min-h-[420px] sm:min-h-[560px] md:min-h-[820px] overflow-hidden bg-neutral-950"
     >
       {/* Video background */}
       <video
@@ -57,19 +67,8 @@ export default function PuzzleHero() {
       {/* Top nav (in-hero) */}
       <header className="relative z-30 border-b-2 border-orange bg-neutral-950">
         <div className="mx-auto max-w-[106rem] px-6 h-16 flex items-center justify-between">
-          {/* left: logo */}
+          {/* Logo */}
           <a href="/" className="flex items-center gap-2">
-            {/* <motion.span
-              layoutId="eveez-logo"
-              className="relative inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-[var(--ev-orange)] to-[var(--ev-green)] text-background font-bold"
-              initial={false}
-              animate={{
-                opacity: phase === "logo" || phase === "depart" ? 1 : 1,
-              }}
-              transition={{ duration: 0.2 }}
-            >
-              E
-            </motion.span> */}
             <img
               src={logo}
               alt="EVeez"
@@ -78,57 +77,111 @@ export default function PuzzleHero() {
             />
           </a>
 
-          {/* center: nav links */}
-          <nav className="hidden md:flex flex-1 justify-center items-center gap-8">
-            <a
-              href="#"
-              className="text-sm text-white/80 hover:text-[var(--ev-orange)] transition"
-            >
-              Franchise
-            </a>
-            <a
-              href="#"
-              className="text-sm text-white/80 hover:text-[var(--ev-orange)] transition"
-            >
-              Fast Charging
-            </a>
-            <a
-              href="#"
-              className="text-sm text-white/80 hover:text-[var(--ev-orange)] transition"
-            >
-              Service
-            </a>
-            <a
-              href="#"
-              className="text-sm text-white/80 hover:text-[var(--ev-orange)] transition"
-            >
-              Tech Stack
-            </a>
-            <a
-              href="#"
-              className="text-sm text-white/80 hover:text-[var(--ev-orange)] transition"
-            >
-              Vehicle R&D
-            </a>
-            <a
-              href="#"
-              className="text-sm text-white/80 hover:text-[var(--ev-orange)] transition"
-            >
-              Training Programmes
-            </a>
+          {/* Center nav — visible only above 1150px */}
+          <nav className="hidden min-[1150px]:flex flex-1 justify-center items-center gap-8">
+            {NAV_LINKS.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="text-sm text-white/80 hover:text-[var(--ev-orange)] transition"
+              >
+                {link.label}
+              </a>
+            ))}
           </nav>
 
-          {/* right: CTA */}
-          <div className="flex items-center">
+          {/* Right side */}
+          <div className="flex items-center gap-3">
+            {/* CTA: hidden below 450px, shown from 450px up */}
             <a
               href="#"
-              className="ml-4 inline-flex items-center rounded-md bg-[#FF6A1A] px-4 py-2 text-sm font-semibold text-black shadow-sm hover:bg-[#ea5b0c] transition"
+              className="hidden min-[450px]:inline-flex items-center rounded-md bg-[#FF6A1A] px-4 py-2 text-sm font-semibold text-black shadow-sm hover:bg-[#ea5b0c] transition"
             >
               Become A Partner
             </a>
+
+            {/* Hamburger button: visible below 1150px */}
+            <button
+              className="min-[1150px]:hidden flex flex-col justify-center items-center w-9 h-9 gap-1.5"
+              onClick={() => setMenuOpen(true)}
+              aria-label="Open menu"
+            >
+              <span className="block w-6 h-0.5 bg-white rounded-full" />
+              <span className="block w-6 h-0.5 bg-white rounded-full" />
+              <span className="block w-6 h-0.5 bg-white rounded-full" />
+            </button>
           </div>
         </div>
       </header>
+
+      {/* Mobile / Tablet drawer — slides in from right */}
+      <AnimatePresence>
+        {menuOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              key="backdrop"
+              className="fixed inset-0 z-40 bg-black/60 min-[1150px]:hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMenuOpen(false)}
+            />
+
+            {/* Drawer */}
+            <motion.div
+              key="drawer"
+              className="fixed top-0 right-0 z-50 h-full w-72 bg-neutral-950 border-l border-white/10 flex flex-col px-6 py-8 min-[1150px]:hidden"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{
+                type: "tween",
+                duration: 0.28,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+            >
+              {/* Close button */}
+              <button
+                className="self-end mb-8 text-white/60 hover:text-white transition"
+                onClick={() => setMenuOpen(false)}
+                aria-label="Close menu"
+              >
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  <path
+                    d="M1 1l20 20M21 1L1 21"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </button>
+
+              {/* Nav links */}
+              <nav className="flex flex-col gap-6">
+                {NAV_LINKS.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className="text-base text-white/80 hover:text-[var(--ev-orange)] transition"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </nav>
+
+              {/* CTA inside menu — only below 450px */}
+              <a
+                href="#"
+                className="mt-10 min-[450px]:hidden inline-flex justify-center items-center rounded-md bg-[#FF6A1A] px-4 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-[#ea5b0c] transition"
+              >
+                Become A Partner
+              </a>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       {/* Hero copy */}
       <div className="relative z-20 mx-auto max-w-3xl px-6 pt-10 text-center">
@@ -141,7 +194,7 @@ export default function PuzzleHero() {
       </div>
 
       {/* Puzzle stage */}
-      <div className="relative z-10 mx-auto w-full h-[45vh] md:h-[45vh] flex items-center justify-center overflow-visible pointer-events-none">
+      <div className="relative z-10 mx-auto w-full h-[220px] sm:h-[370px] md:h-[600px] flex items-center justify-center overflow-visible pointer-events-none">
         <div className="relative w-[1000px] h-[600px] scale-[0.35] sm:scale-[0.6] md:scale-100 flex-shrink-0 origin-center pointer-events-none [&>*]:pointer-events-auto">
           {PIECES.map((p) => {
             const id = `pp-${p.key}`;

@@ -45,13 +45,13 @@ export default function NewsMediaCoverage() {
 
   return (
     <div className="bg-[var(--background-primary)]">
-      <section className="mx-auto max-w-[106rem] px-6 py-16 text-white">
+      <section className="mx-auto max-w-[106rem] px-6 py-8 md:py-16 text-white">
         {/* Heading */}
         <div className="max-w-3xl mx-auto text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-white font-display">
+          <h2 className="text-2xl md:text-4xl font-semibold tracking-tight text-white font-display">
             News & Media Coverage
           </h2>
-          <p className="mt-2 text-base text-[var(--footer-text)]">
+          <p className="mt-2 text-sm md:text-[16px] text-[var(--footer-text)]">
             EVEEZ has been featured across leading business, startup, mobility,
             and industry publications.
           </p>

@@ -15,12 +15,10 @@ const STATS: Stat[] = [
 
 function useCountUp(target: number, start: boolean, duration = 1400) {
   const [value, setValue] = useState(0);
-
   useEffect(() => {
     if (!start) return;
     let startTime: number | null = null;
     let raf: number;
-
     const step = (timestamp: number) => {
       if (startTime === null) startTime = timestamp;
       const progress = Math.min((timestamp - startTime) / duration, 1);
@@ -28,11 +26,9 @@ function useCountUp(target: number, start: boolean, duration = 1400) {
       setValue(Math.round(eased * target));
       if (progress < 1) raf = requestAnimationFrame(step);
     };
-
     raf = requestAnimationFrame(step);
     return () => cancelAnimationFrame(raf);
   }, [start, target, duration]);
-
   return value;
 }
 
@@ -61,13 +57,16 @@ function StatCard({ label, target, suffix = "" }: Stat) {
   return (
     <div
       ref={ref}
-      className="rounded-2xl border border-neutral-800 bg-neutral-900/50 px-6 py-8 text-center"
+      // ↓ tighter padding on mobile, original on md+
+      className="rounded-[16px] border border-border bg-neutral-900/70 px-3 py-6 text-center md:px-[24px] md:py-[24px]"
     >
-      <div className="text-3xl font-semibold text-white">
+      {/* ↓ smaller number on mobile so long values like 20,000+ don't overflow */}
+      <div className="text-2xl font-medium text-white font-display md:text-3xl">
         {value.toLocaleString("en-US")}
         {suffix}
       </div>
-      <div className="mt-2 text-xs uppercase tracking-[0.15em] text-[var(--footer-text)]">
+      {/* ↓ tighten letter-spacing and allow wrapping on mobile */}
+      <div className="mt-2 text-xs md:text-sm uppercase leading-tight tracking-[0.08em] text-[var(--footer-text)] md:tracking-[0.15em]">
         {label}
       </div>
     </div>
@@ -76,9 +75,11 @@ function StatCard({ label, target, suffix = "" }: Stat) {
 
 export default function StatsSection() {
   return (
-    <section className="bg-black py-16">
-      <div className="mx-auto max-w-[106rem] px-6">
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+    <section className="bg-black py-8 md:py-16">
+      {/* ↓ less horizontal padding on mobile */}
+      <div className="mx-auto max-w-[106rem] px-4 md:px-6">
+        {/* grid stays 2-col on mobile, 4-col on md+ — unchanged */}
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
           {STATS.map((s) => (
             <StatCard key={s.label} {...s} />
           ))}
