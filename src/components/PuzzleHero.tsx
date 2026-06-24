@@ -220,7 +220,7 @@ export default function PuzzleHero() {
 
       {/* Hero copy */}
       <div className="relative z-20 mx-auto max-w-3xl px-6 pt-10 text-center">
-        <h1 className="mt-5 text-2xl md:text-6xl font-semibold leading-[1.02]">
+        <h1 className="mt-5 text-[28px] md:text-6xl font-semibold leading-[1.02]">
           Mobility for <span className="text-gradient-ev">Livelihoods</span>
         </h1>
         {/* <p className="mt-4 text-base md:text-lg text-[var(--footer-text)]">
@@ -242,7 +242,7 @@ export default function PuzzleHero() {
             width: 1000,
             height: isMobile ? 950 : 600,
             transform: isMobile
-              ? 'scale(0.55)'
+              ? 'scale(0.6)'
               : isSm
                 ? 'scale(0.58)'
                 : 'scale(1)',
