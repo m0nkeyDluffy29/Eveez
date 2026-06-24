@@ -59,13 +59,13 @@ export default function NewsMediaCoverage() {
 
         {/* Slider */}
         <div className="overflow-hidden">
-          <div ref={trackRef} className="flex items-center gap-5 w-max">
+          <div ref={trackRef} className="flex items-center gap-3 md:gap-5 w-max">
             {doubled.map((partner, i) => (
               <img
                 key={`${partner.name}-${i}`}
                 src={partner.logo}
                 alt={partner.name}
-                className="h-15 w-auto object-contain  hover:opacity-100 transition-opacity"
+                className="h-8 md:h-15 w-auto object-contain hover:opacity-100 transition-opacity"
               />
             ))}
           </div>

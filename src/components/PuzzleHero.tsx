@@ -4,6 +4,29 @@ import logo from "../../assets/icons/eveez-logo-1.png";
 import { type VerticalKey } from "./SectionShell";
 import { PIECES } from "./PuzzleHeroPieces";
 
+// Mobile scatter: absolute px positions inside a 1000×950 canvas (3 rows × 2 cols).
+// Row height ≈ 317px, piece height ≈ 280-334px — each row comfortably fits one piece.
+// Col 0 = left half (0-499px), Col 1 = right half (500-999px).
+// Natural jitter breaks the grid look while preventing overlap.
+const MOBILE_SCATTER_PX: { left: number; top: number; rot: number }[] = [
+  { left:  240, top:  10, rot: -13 }, // franchise       L / row0
+  { left: 520, top:  18, rot:  11 }, // fast-charging   R / row0
+  { left:  460, top: 300, rot:  -8 }, // service         L / row1
+  { left: 200, top: 250, rot:   9 }, // tech-stack      R / row1
+  { left:  215, top: 550, rot: -16 }, // vehicle-rd      L / row2
+  { left: 480, top: 500, rot:   7 }, // training        R / row2
+];
+
+// Desktop scatter positions (% of 1000×600 canvas) — original values
+const DESKTOP_SCATTER = [
+  { x: 4,  y: 20, rot: -14 }, // franchise
+  { x: 62, y: 17, rot:  11 }, // fast-charging
+  { x: 74, y: 54, rot:  -7 }, // service
+  { x: 0,  y: 57, rot:   9 }, // tech-stack
+  { x: 37, y: 62, rot: -16 }, // vehicle-rd
+  { x: 32, y: 14, rot:  -4 }, // training
+];
+
 export default function PuzzleHero() {
   const reduce = useReducedMotion();
   const [phase, setPhase] = useState<
@@ -13,6 +36,18 @@ export default function PuzzleHero() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [mouse, setMouse] = useState({ x: -500, y: -500 });
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 640);
+  const [isSm, setIsSm] = useState(() => window.innerWidth >= 640 && window.innerWidth < 768);
+
+  useEffect(() => {
+    const onResize = () => {
+      const w = window.innerWidth;
+      setIsMobile(w < 640);
+      setIsSm(w >= 640 && w < 768);
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
 
   const NAV_LINKS = [
     { label: "Franchise", href: "#" },
@@ -43,7 +78,7 @@ export default function PuzzleHero() {
   return (
     <div
       ref={containerRef}
-      className="relative min-h-[420px] sm:min-h-[560px] md:min-h-[820px] overflow-hidden bg-neutral-950"
+      className="relative min-h-[600px] sm:min-h-[620px] md:min-h-[820px] overflow-hidden bg-neutral-950"
     >
       {/* Video background */}
       <video
@@ -185,7 +220,7 @@ export default function PuzzleHero() {
 
       {/* Hero copy */}
       <div className="relative z-20 mx-auto max-w-3xl px-6 pt-10 text-center">
-        <h1 className="mt-5 text-5xl md:text-6xl font-semibold leading-[1.02]">
+        <h1 className="mt-5 text-2xl md:text-6xl font-semibold leading-[1.02]">
           Mobility for <span className="text-gradient-ev">Livelihoods</span>
         </h1>
         {/* <p className="mt-4 text-base md:text-lg text-[var(--footer-text)]">
@@ -194,21 +229,48 @@ export default function PuzzleHero() {
       </div>
 
       {/* Puzzle stage */}
-      <div className="relative z-10 mx-auto w-full h-[220px] sm:h-[370px] md:h-[600px] flex items-center justify-center overflow-visible pointer-events-none">
-        <div className="relative w-[1000px] h-[600px] scale-[0.35] sm:scale-[0.6] md:scale-100 flex-shrink-0 origin-center pointer-events-none [&>*]:pointer-events-auto">
-          {PIECES.map((p) => {
-            const id = `pp-${p.key}`;
-
+      {/*
+        Mobile: virtual canvas 1000×950, scale(0.37) → ~370px visible height
+                3 rows × 2 cols with px-based positions, no overlap
+        sm (640-767px): same mobile canvas but scale(0.52)
+        md+: 1000×600 at scale(1)
+      */}
+      <div className="relative z-10 mx-auto w-full h-[390px] sm:h-[400px] md:h-[620px] flex items-start justify-center overflow-visible pointer-events-none">
+        <div
+          className="relative flex-shrink-0 pointer-events-none [&>*]:pointer-events-auto"
+          style={{
+            width: 1000,
+            height: isMobile ? 950 : 600,
+            transform: isMobile
+              ? 'scale(0.55)'
+              : isSm
+                ? 'scale(0.58)'
+                : 'scale(1)',
+            transformOrigin: 'top center',
+          }}
+        >
+          {PIECES.map((p, idx) => {
             // assembled position: center the 3x2 grid of base TILE (180px)
             const BASE_TILE = 180;
             const gridW = 3 * BASE_TILE + 2 * GAP;
             const gridH = 2 * BASE_TILE + GAP;
+            // On mobile the canvas is 950px tall; assembled center at 300px keeps grid visible at scale(0.38)
+            const centerY = isMobile ? 300 : '50%';
             const targetX = `calc(50% - ${gridW / 2}px + ${p.col * (BASE_TILE + GAP)}px + ${p.ox}px)`;
-            const targetY = `calc(50% - ${gridH / 2}px + ${p.row * (BASE_TILE + GAP)}px + ${p.oy}px)`;
+            const targetY = isMobile
+              ? `calc(${centerY}px - ${gridH / 2}px + ${p.row * (BASE_TILE + GAP)}px + ${p.oy}px)`
+              : `calc(50% - ${gridH / 2}px + ${p.row * (BASE_TILE + GAP)}px + ${p.oy}px)`;
 
             const scattered = phase === "scatter";
             const assembling =
               phase === "assemble" || phase === "logo" || phase === "depart";
+
+            // Scatter position: px on mobile, % on desktop
+            const mPx = MOBILE_SCATTER_PX[idx];
+            const dPct = DESKTOP_SCATTER[idx];
+            const scatterLeft = isMobile ? `${mPx.left}px` : `${dPct.x}%`;
+            const scatterTop  = isMobile ? `${mPx.top}px`  : `${dPct.y}%`;
+            const scatterRot  = isMobile ? mPx.rot : dPct.rot;
 
             return (
               <motion.button
@@ -218,18 +280,18 @@ export default function PuzzleHero() {
                 onClick={() => onPick(p.key)}
                 className="absolute group focus:outline-none cursor-pointer"
                 initial={{
-                  left: `${p.x}%`,
-                  top: `${p.y}%`,
-                  rotate: p.rot,
+                  left: scatterLeft,
+                  top: scatterTop,
+                  rotate: scatterRot,
                   scale: 0.6,
                   opacity: 0,
                 }}
                 animate={
                   scattered
                     ? {
-                        left: `${p.x}%`,
-                        top: `${p.y}%`,
-                        rotate: p.rot,
+                        left: scatterLeft,
+                        top: scatterTop,
+                        rotate: scatterRot,
                         scale: 1,
                         opacity: 1,
                         y: reduce ? 0 : [0, -8, 0],
@@ -281,7 +343,7 @@ export default function PuzzleHero() {
                 }
                 whileHover={
                   scattered
-                    ? { scale: 1.06, y: -6, rotate: p.rot * 0.4 }
+                    ? { scale: 1.06, y: -6, rotate: scatterRot * 0.4 }
                     : undefined
                 }
                 whileTap={scattered ? { scale: 0.96 } : undefined}
