@@ -17,14 +17,14 @@ const MOBILE_SCATTER_PX: { left: number; top: number; rot: number }[] = [
   { left: 480, top: 500, rot:   7 }, // training        R / row2
 ];
 
-// Desktop scatter positions (% of 1000×600 canvas) — original values
+// Desktop scatter positions (% of 1000×450 canvas) — y values scaled to fit shorter canvas
 const DESKTOP_SCATTER = [
-  { x: 4,  y: 20, rot: -14 }, // franchise
-  { x: 62, y: 17, rot:  11 }, // fast-charging
-  { x: 74, y: 54, rot:  -7 }, // service
-  { x: 0,  y: 57, rot:   9 }, // tech-stack
-  { x: 37, y: 62, rot: -16 }, // vehicle-rd
-  { x: 32, y: 14, rot:  -4 }, // training
+  { x: 15,  y: 0, rot: -14 }, // franchise
+  { x: 70, y: 50, rot:  11 }, // fast-charging
+  { x: 74, y: 0, rot:  -7 }, // service
+  { x: 0,  y: 45, rot:   9 }, // tech-stack
+  { x: 20, y: 55, rot: -16 }, // vehicle-rd
+  { x: 42, y: 10, rot:  -4 }, // training
 ];
 
 export default function PuzzleHero() {
@@ -37,12 +37,14 @@ export default function PuzzleHero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < 640);
   const [isSm, setIsSm] = useState(() => window.innerWidth >= 640 && window.innerWidth < 768);
+  const [isLg, setIsLg] = useState(() => window.innerWidth >= 768 && window.innerWidth < 1300);
 
   useEffect(() => {
     const onResize = () => {
       const w = window.innerWidth;
       setIsMobile(w < 640);
       setIsSm(w >= 640 && w < 768);
+      setIsLg(w >= 768 && w < 1300);
     };
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
@@ -68,7 +70,7 @@ export default function PuzzleHero() {
   return (
     <div
       ref={containerRef}
-      className="relative min-h-[650px] sm:min-h-[620px] md:min-h-[820px] overflow-hidden bg-neutral-950"
+      className="relative min-h-[650px] sm:min-h-[620px] md:min-h-[670px] overflow-hidden bg-neutral-950"
     >
       {/* Video background */}
       <video
@@ -108,17 +110,19 @@ export default function PuzzleHero() {
         sm (640-767px): same mobile canvas but scale(0.52)
         md+: 1000×600 at scale(1)
       */}
-      <div className="relative z-10 mx-auto w-full h-[390px] sm:h-[400px] md:h-[620px] flex items-start justify-center overflow-visible pointer-events-none">
+      <div className="relative z-10 mx-auto w-full h-[390px] sm:h-[400px] md:h-[500px] flex items-start justify-center overflow-visible pointer-events-none">
         <div
           className="relative flex-shrink-0 pointer-events-none [&>*]:pointer-events-auto"
           style={{
             width: 1000,
-            height: isMobile ? 950 : 600,
+            height: isMobile ? 950 : 450,
             transform: isMobile
               ? 'scale(0.6)'
               : isSm
                 ? 'scale(0.58)'
-                : 'scale(1)',
+                : isLg
+                  ? 'scale(0.80)'
+                  : 'scale(1)',
             transformOrigin: 'top center',
           }}
         >
@@ -127,13 +131,12 @@ export default function PuzzleHero() {
             const BASE_TILE = 180;
             const gridW = 3 * BASE_TILE + 2 * GAP;
             const gridH = 2 * BASE_TILE + GAP;
-            // On mobile the canvas is 950px tall; assembled center at 300px keeps grid visible at scale(0.38)
-            const centerY = isMobile ? 300 : '50%';
+            // Desktop canvas is 450px tall; assembled center at 50% = 225px
+            const centerY = isMobile ? 370 : '50%';
             const targetX = `calc(50% - ${gridW / 2}px + ${p.col * (BASE_TILE + GAP)}px + ${p.ox}px)`;
             const targetY = isMobile
               ? `calc(${centerY}px - ${gridH / 2}px + ${p.row * (BASE_TILE + GAP)}px + ${p.oy}px)`
               : `calc(50% - ${gridH / 2}px + ${p.row * (BASE_TILE + GAP)}px + ${p.oy}px)`;
-
             const scattered = phase === "scatter";
             const assembling =
               phase === "assemble" || phase === "logo" || phase === "depart";
