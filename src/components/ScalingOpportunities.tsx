@@ -74,7 +74,7 @@ export default function ScalingOpportunities() {
       <div className="mx-auto max-w-[106rem] px-6 text-center">
         {/* Heading */}
         <h2 className="text-2xl md:text-4xl font-semibold text-white">
-          Scaling Opportunities in <span className="text-[#ff5a2a]">India</span>
+          Scaling Opportunities in <span className="text-[#E8461F]">India</span>
         </h2>
         <p className="mt-3 text-sm md:text-base text-[var(--footer-text)]">
           Powering the next wave of mobility and entrepreneurship.
@@ -88,10 +88,10 @@ export default function ScalingOpportunities() {
           {visibleCities.map((city) => (
             <div
               key={city.name}
-              className="flex sm:hidden w-full flex-col items-center justify-center gap-2 rounded-[5px] border border-neutral-800 bg-neutral-900/60 px-5 py-5 transition-colors hover:border-[#ff5a2a]/40 hover:bg-neutral-900"
+              className="flex sm:hidden w-full flex-col items-center justify-center gap-2 rounded-[5px] border border-neutral-800 bg-neutral-900/60 px-5 py-5 transition-colors hover:border-[#E8461F]/40 hover:bg-neutral-900"
             >
               <city.Icon className="h-12 w-12" />
-              <span className="text-[15px] font-medium text-[#ff5a2a]">
+              <span className="text-[15px] font-medium text-[#E8461F]">
                 {city.name}
               </span>
             </div>
@@ -101,10 +101,10 @@ export default function ScalingOpportunities() {
           {CITIES.map((city) => (
             <div
               key={`desktop-${city.name}`}
-              className="hidden sm:flex w-full sm:w-[110px] md:w-[160px] flex-col items-center justify-center gap-2 rounded-[5px] border border-neutral-800 bg-neutral-900/60 px-5 py-5 transition-colors hover:border-[#ff5a2a]/40 hover:bg-neutral-900"
+              className="hidden sm:flex w-full sm:w-[110px] md:w-[160px] flex-col items-center justify-center gap-2 rounded-[5px] border border-neutral-800 bg-neutral-900/60 px-5 py-5 transition-colors hover:border-[#E8461F]/40 hover:bg-neutral-900"
             >
               <city.Icon className="h-12 w-12" />
-              <span className="text-[15px] font-medium text-[#ff5a2a]">
+              <span className="text-[15px] font-medium text-[#E8461F]">
                 {city.name}
               </span>
             </div>
@@ -115,7 +115,7 @@ export default function ScalingOpportunities() {
         <div className="mt-6 sm:hidden">
           <button
             onClick={() => setShowAll((prev) => !prev)}
-            className="inline-flex items-center gap-2 rounded-md border border-[#ff5a2a]/60 bg-neutral-900 px-6 py-2.5 text-sm font-semibold text-[#ff5a2a] transition hover:bg-[#ff5a2a]/10 active:scale-95"
+            className="inline-flex items-center gap-2 rounded-md border border-[#E8461F]/60 bg-neutral-900 px-6 py-2.5 text-sm font-semibold text-[#E8461F] transition hover:bg-[#E8461F]/10 active:scale-95"
           >
             {showAll ? (
               <>

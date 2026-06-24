@@ -7,7 +7,7 @@ import logo1 from "../../assets/icons/eveez-logo.png";
 
 export default function FooterSection() {
   return (
-    <section className="relative left-1/2 right-1/2 w-screen -translate-x-1/2 mt-auto bg-neutral-950 text-neutral-300 border-t-2 border-orange-500">
+    <section className="relative left-1/2 right-1/2 w-screen -translate-x-1/2 mt-auto bg-neutral-950 text-neutral-300 border-t-2 border-[#E8461F]">
       <div className="mx-auto max-w-[106rem] px-6 py-20">
         <div className="grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-[1.5fr_1fr_1fr_1fr] lg:gap-12">
           <div className="col-span-2 lg:col-span-1">

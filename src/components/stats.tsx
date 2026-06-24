@@ -75,7 +75,7 @@ function StatCard({ label, target, suffix = "" }: Stat) {
 
 export default function StatsSection() {
   return (
-    <section className="bg-black py-8 md:py-16">
+    <section className="bg-black py-8">
       {/* ↓ less horizontal padding on mobile */}
       <div className="mx-auto max-w-[106rem] px-4 md:px-6">
         {/* grid stays 2-col on mobile, 4-col on md+ — unchanged */}

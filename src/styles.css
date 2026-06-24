@@ -53,7 +53,7 @@
   --popover: oklch(0.18 0.02 250);
   --popover-foreground: oklch(0.98 0.005 250);
 
-  --primary: oklch(0.74 0.19 55); /* EV orange */
+  --primary: #E8461F; /* EV orange */
   --primary-foreground: oklch(0.15 0.02 250);
   --secondary: oklch(0.78 0.18 152); /* EV green */
   --secondary-foreground: oklch(0.15 0.02 250);
@@ -67,10 +67,10 @@
   --destructive-foreground: oklch(0.98 0.005 250);
   --border: oklch(1 0 0 / 0.08);
   --input: oklch(1 0 0 / 0.1);
-  --ring: oklch(0.74 0.19 55 / 0.6);
+  --ring: #E8461F99;
   --nw-orange: oklch(0.683 0.2091 36.11);
 
-  --ev-orange: oklch(0.74 0.19 55);
+  --ev-orange: #E8461F;
   --ev-green: oklch(0.78 0.18 152);
   --ev-glow: oklch(0.95 0.05 90);
   --ev-blue: oklch(0.8173 0.1313 221.24);
@@ -107,7 +107,7 @@
   background:
     radial-gradient(
       1200px 600px at 15% 10%,
-      oklch(0.74 0.19 55 / 0.18),
+      #E8461F2E,
       transparent 60%
     ),
     radial-gradient(
@@ -123,12 +123,23 @@
     linear-gradient(180deg, oklch(0.13 0.02 250), oklch(0.18 0.025 255));
 }
 
+@keyframes pan-grid {
+  0% {
+    background-position: 0px 0px;
+  }
+  100% {
+    background-position: 56px 56px;
+  }
+}
+
 .grid-lines {
   background-image:
     linear-gradient(oklch(1 0 0 / 0.04) 1px, transparent 1px),
     linear-gradient(90deg, oklch(1 0 0 / 0.04) 1px, transparent 1px);
   background-size: 56px 56px;
   mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+  animation: pan-grid 12s linear infinite;
+  will-change: background-position;
 }
 
 /* === Puzzle piece === */
@@ -164,7 +175,7 @@
   padding: 1px;
   background: linear-gradient(
     135deg,
-    var(--accent-color, oklch(0.74 0.19 55 / 0.6)),
+    var(--accent-color, #E8461F99),
     transparent 50%,
     oklch(0.78 0.18 152 / 0.4)
   );
@@ -189,7 +200,7 @@
 }
 
 .glow-orange {
-  box-shadow: 0 0 60px -10px oklch(0.74 0.19 55 / 0.6);
+  box-shadow: 0 0 60px -10px #E8461F99;
 }
 .glow-green {
   box-shadow: 0 0 60px -10px oklch(0.78 0.18 152 / 0.6);
@@ -206,6 +217,9 @@
 }
 .float-slow {
   animation: float-y 6s ease-in-out infinite;
+}
+.puzzle-float {
+  animation: float-y var(--float-dur, 5s) ease-in-out infinite var(--float-delay, 0s);
 }
 
 @keyframes streak {
@@ -258,7 +272,7 @@
   border-radius: 9999px;
   background: radial-gradient(
     closest-side,
-    oklch(0.74 0.19 55 / 0.18),
+    #E8461F2E,
     transparent 70%
   );
   mix-blend-mode: screen;

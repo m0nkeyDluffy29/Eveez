@@ -28,7 +28,7 @@ export default function WhyEveezWins() {
     <section className="mx-auto max-w-[106rem] px-6 py-10 md:py-20">
       <div className="max-w-3xl mx-auto text-center">
         <h2 className="text-2xl md:text-4xl font-semibold tracking-tight text-white font-display">
-          Why <span className="text-[#ff5a2a]">EVeez</span> Wins
+          Why <span className="text-[#E8461F]">EVeez</span> Wins
         </h2>
         <p className="mt-3 text-sm md:text-[16px] text-[var(--footer-text)]">
           Built to deliver sustainable growth, operational efficiency, and

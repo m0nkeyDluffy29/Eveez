@@ -23,7 +23,7 @@ const figmaVikram = (props: React.SVGProps<SVGSVGElement>) => (
       width={54}
       height={54}
       rx={27}
-      stroke="#FF5C26"
+      stroke="#E8461F"
       strokeWidth={2}
     />
     <defs>

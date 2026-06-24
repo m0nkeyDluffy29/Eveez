@@ -16,7 +16,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="relative z-30 border-b-2 border-orange bg-neutral-950">
+      <header className="relative z-30 border-b-2 py-2 border-orange bg-neutral-950">
         <div className="mx-auto max-w-[106rem] px-6 h-16 flex items-center justify-between">
           {/* Logo */}
           <a href="/" className="flex items-center gap-2">
@@ -46,7 +46,7 @@ export default function Navbar() {
             {/* CTA: hidden below 450px, shown from 450px up */}
             <a
               href="#"
-              className="hidden min-[450px]:inline-flex items-center rounded-md bg-[#FF6A1A] px-4 py-2 text-sm font-semibold text-black shadow-sm hover:bg-[#ea5b0c] transition"
+              className="hidden min-[450px]:inline-flex items-center rounded-[8px] bg-[#E8461F] px-4 py-2 text-sm font-semibold text-black shadow-sm hover:bg-[#F26A4A] transition"
             >
               Become A Partner
             </a>
@@ -125,7 +125,7 @@ export default function Navbar() {
               {/* CTA inside menu — only below 450px */}
               <a
                 href="#"
-                className="mt-10 min-[450px]:hidden inline-flex justify-center items-center rounded-md bg-[#FF6A1A] px-4 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-[#ea5b0c] transition"
+                className="mt-10 min-[450px]:hidden inline-flex justify-center items-center rounded-md bg-[#E8461F] px-4 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-[#F26A4A] transition"
               >
                 Become A Partner
               </a>

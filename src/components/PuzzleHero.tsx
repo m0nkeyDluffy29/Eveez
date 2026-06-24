@@ -33,7 +33,6 @@ export default function PuzzleHero() {
     "scatter" | "assemble" | "logo" | "depart"
   >("scatter");
   const [target, setTarget] = useState<VerticalKey | null>(null);
-  const [mouse, setMouse] = useState({ x: -500, y: -500 });
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < 640);
   const [isSm, setIsSm] = useState(() => window.innerWidth >= 640 && window.innerWidth < 768);
@@ -48,18 +47,16 @@ export default function PuzzleHero() {
     };
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
-  }, []);
-
-  useEffect(() => {
-    const onMove = (e: MouseEvent) => setMouse({ x: e.clientX, y: e.clientY });
-    window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
-  }, []);
+  }, [])
 
   function onPick(k: VerticalKey) {
-    if (phase !== "scatter") return;
-    setTarget(k);
-    setPhase("assemble");
+    if (phase === "scatter") {
+      setTarget(k);
+      setPhase("assemble");
+    } else if (phase === "assemble" || phase === "logo") {
+      setTarget(null);
+      setPhase("scatter");
+    }
   }
 
   // Tile size in assembled state
@@ -75,6 +72,7 @@ export default function PuzzleHero() {
       {/* Video background */}
       <video
         className="pointer-events-none absolute inset-0 h-full w-full object-cover z-0"
+        style={{ willChange: 'transform' }}
         src="/video/0_Abstract_Background_1920x1080.mp4"
         autoPlay
         loop
@@ -91,6 +89,8 @@ export default function PuzzleHero() {
             "radial-gradient(ellipse at bottom right, oklch(0.55 0.18 36 / 0.55) 0%, oklch(0.4 0.15 36 / 0.25) 40%, transparent 70%)",
         }}
       />
+      {/* Black overlay 47% */}
+      <div className="pointer-events-none absolute inset-0 z-0 bg-black/[0.47]" />
       <Navbar />
 
       {/* Hero copy */}
@@ -110,7 +110,7 @@ export default function PuzzleHero() {
         sm (640-767px): same mobile canvas but scale(0.52)
         md+: 1000×600 at scale(1)
       */}
-      <div className="relative z-10 mx-auto w-full h-[390px] sm:h-[400px] md:h-[500px] flex items-start justify-center overflow-visible pointer-events-none">
+      <div className="relative z-10 mx-auto w-full h-[390px] sm:h-[400px] md:h-[550px] flex items-start justify-center overflow-visible pointer-events-none">
         <div
           className="relative flex-shrink-0 pointer-events-none [&>*]:pointer-events-auto"
           style={{
@@ -136,7 +136,7 @@ export default function PuzzleHero() {
             const targetX = `calc(50% - ${gridW / 2}px + ${p.col * (BASE_TILE + GAP)}px + ${p.ox}px)`;
             const targetY = isMobile
               ? `calc(${centerY}px - ${gridH / 2}px + ${p.row * (BASE_TILE + GAP)}px + ${p.oy}px)`
-              : `calc(50% - ${gridH / 2}px + ${p.row * (BASE_TILE + GAP)}px + ${p.oy}px)`;
+              : `calc(50% + 50px - ${gridH / 2}px + ${p.row * (BASE_TILE + GAP)}px + ${p.oy}px)`;
             const scattered = phase === "scatter";
             const assembling =
               phase === "assemble" || phase === "logo" || phase === "depart";
@@ -145,7 +145,7 @@ export default function PuzzleHero() {
             const mPx = MOBILE_SCATTER_PX[idx];
             const dPct = DESKTOP_SCATTER[idx];
             const scatterLeft = isMobile ? `${mPx.left}px` : `${dPct.x}%`;
-            const scatterTop  = isMobile ? `${mPx.top}px`  : `${dPct.y}%`;
+            const scatterTop  = isMobile ? `${mPx.top}px`  : `calc(${dPct.y}% + 20px)`;
             const scatterRot  = isMobile ? mPx.rot : dPct.rot;
 
             return (
@@ -170,7 +170,6 @@ export default function PuzzleHero() {
                         rotate: scatterRot,
                         scale: 1,
                         opacity: 1,
-                        y: reduce ? 0 : [0, -8, 0],
                       }
                     : assembling
                       ? {
@@ -187,29 +186,11 @@ export default function PuzzleHero() {
                 transition={
                   scattered
                     ? {
-                        left: {
-                          duration: 1,
-                          delay: p.delay,
-                          ease: [0.22, 1, 0.36, 1],
-                        },
-                        top: {
-                          duration: 1,
-                          delay: p.delay,
-                          ease: [0.22, 1, 0.36, 1],
-                        },
-                        rotate: {
-                          duration: 1,
-                          delay: p.delay,
-                          ease: [0.22, 1, 0.36, 1],
-                        },
-                        scale: { duration: 0.8, delay: p.delay },
+                        left: { duration: 1, delay: p.delay, ease: [0.22, 1, 0.36, 1] },
+                        top:  { duration: 1, delay: p.delay, ease: [0.22, 1, 0.36, 1] },
+                        rotate: { duration: 1, delay: p.delay, ease: [0.22, 1, 0.36, 1] },
+                        scale:   { duration: 0.8, delay: p.delay },
                         opacity: { duration: 0.6, delay: p.delay },
-                        y: {
-                          duration: 5 + (p.col + p.row),
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                          delay: p.delay,
-                        },
                       }
                     : {
                         duration: 1.1,
@@ -228,15 +209,23 @@ export default function PuzzleHero() {
                   height: p.h,
                   transformOrigin: "center",
                   zIndex: p.row * 3 + p.col + 1,
-                  filter: scattered
-                    ? "drop-shadow(4px 10px 0px rgba(255, 90, 42, 0.35))"
-                    : "none",
+                  filter: scattered ? "drop-shadow(-4px 6px 0px rgba(0, 0, 0, 0.35))" : "none",
                   transition: "filter 0.5s ease",
+                  willChange: "transform",
                 }}
               >
-                <p.Component
-                  className={`w-full h-full${assembling ? " [&_g]:!filter-none" : ""}`}
-                />
+                {/* CSS float — GPU-composited, zero JS cost */}
+                <div
+                  className={scattered ? "puzzle-float" : ""}
+                  style={scattered ? {
+                    ['--float-dur' as string]: `${5 + p.col + p.row}s`,
+                    ['--float-delay' as string]: `${p.delay}s`,
+                  } : {}}
+                >
+                  <p.Component
+                    className="w-full h-full [&_g]:!filter-none"
+                  />
+                </div>
               </motion.button>
             );
           })}

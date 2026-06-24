@@ -25,7 +25,7 @@ export const VERTICALS: Record<VerticalKey, VerticalConfig> = {
     tag: "Pillar 01",
     tagline: "Start Your EVpreneur Journey Today",
     color: "orange",
-    accent: "#ff5a2a",
+    accent: "#E8461F",
   },
   "fast-charging": {
     navLabel: "Fast Charging",
@@ -33,7 +33,7 @@ export const VERTICALS: Record<VerticalKey, VerticalConfig> = {
     tag: "Pillar 02",
     tagline: "Coast-to-coast electrons, delivered in minutes.",
     color: "green",
-    accent: "#ff5a2a",
+    accent: "#E8461F",
   },
   service: {
     navLabel: "Service",
@@ -41,7 +41,7 @@ export const VERTICALS: Record<VerticalKey, VerticalConfig> = {
     tag: "Pillar 03",
     tagline: "An always-on care ecosystem for every rider.",
     color: "orange",
-    accent: "#ff5a2a",
+    accent: "#E8461F",
   },
   "tech-stack": {
     navLabel: "Tech Stack",
@@ -49,7 +49,7 @@ export const VERTICALS: Record<VerticalKey, VerticalConfig> = {
     tag: "Pillar 04",
     tagline: "Cloud, IoT, and edge — orchestrating mobility.",
     color: "mixed",
-    accent: "#ff5a2a",
+    accent: "#E8461F",
   },
   "vehicle-rd": {
     navLabel: "Vehicle R&D",
@@ -57,7 +57,7 @@ export const VERTICALS: Record<VerticalKey, VerticalConfig> = {
     tag: "Pillar 05",
     tagline: "Designing the EVs of the next decade.",
     color: "orange",
-    accent: "#ff5a2a",
+    accent: "#E8461F",
   },
   training: {
     navLabel: "Training Programmes",
@@ -65,7 +65,7 @@ export const VERTICALS: Record<VerticalKey, VerticalConfig> = {
     tag: "Pillar 06",
     tagline: "Empowering the workforce that powers EVeez.",
     color: "green",
-    accent: "#ff5a2a",
+    accent: "#E8461F",
   },
 };
 
