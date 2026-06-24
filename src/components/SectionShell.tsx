@@ -1,6 +1,5 @@
-import { Link, useRouter } from "@tanstack/react-router";
 import { ReactNode } from "react";
-import logo from "../../assets/icons/eveez-logo-1.png";
+import Navbar from "./Navbar";
 
 export type VerticalKey =
   | "franchise"
@@ -80,44 +79,10 @@ export function SectionShell({
   hideHero?: boolean;
 }) {
   const v = VERTICALS[vertical];
-  const router = useRouter();
 
   return (
     <div className="relative min-h-screen bg-black text-white">
-      {/* ── Navbar ── */}
-      <header className="relative z-30 border-b-2 border-orange bg-black">
-        <div className="mx-auto max-w-[106rem] px-6 h-16 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-3 group">
-            <img
-              src={logo}
-              alt="EVeez"
-              className="h-15 w-auto object-contain"
-              loading="lazy"
-            />
-          </Link>
-
-          <nav className="hidden md:flex flex-1 justify-center items-center gap-8">
-            {(Object.keys(VERTICALS) as VerticalKey[]).map((k) => (
-              <Link
-                key={k}
-                to={`/${k}` as never}
-                className="text-sm text-white/80 hover:text-[var(--ev-orange)] transition"
-              >
-                {VERTICALS[k].navLabel}
-              </Link>
-            ))}
-          </nav>
-
-          <div className="flex items-center">
-            <button
-              onClick={() => router.history.back()}
-              className="ml-4 inline-flex items-center rounded-md bg-[#FF6A1A] px-4 py-2 text-sm font-semibold text-black shadow-sm hover:bg-[#ea5b0c] transition"
-            >
-              Become a Partner
-            </button>
-          </div>
-        </div>
-      </header>
+      <Navbar />
 
       {/* ── Main ── */}
       <main className="relative mx-auto max-w-[106rem] px-6">

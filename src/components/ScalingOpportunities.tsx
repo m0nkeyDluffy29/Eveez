@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import FigmaAhmedabad from "./city-logo/figma-ahmedabad";
 import FigmaBengaluru from "./city-logo/figma-bengaluru";
 import FigmaBhopal from "./city-logo/figma-bhopal";
@@ -60,7 +61,14 @@ const CITIES: City[] = [
   { name: "Visakhapatnam", Icon: FigmaVisakhapatnam },
 ];
 
+const MOBILE_INITIAL = 4;
+
 export default function ScalingOpportunities() {
+  const [showAll, setShowAll] = useState(false);
+
+  // On mobile: show 4 initially, all when expanded. On sm+: always show all.
+  const visibleCities = showAll ? CITIES : CITIES.slice(0, MOBILE_INITIAL);
+
   return (
     <section className="bg-black py-10 md:py-20">
       <div className="mx-auto max-w-[106rem] px-6 text-center">
@@ -72,12 +80,15 @@ export default function ScalingOpportunities() {
           Powering the next wave of mobility and entrepreneurship.
         </p>
 
-        {/* City grid — flex-wrap centers the partial last row */}
+        {/* City grid */}
+        {/* Mobile: 2-col grid, capped at 4 until expanded */}
+        {/* sm+: flex-wrap, all cities always visible */}
         <div className="mt-12 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:justify-center">
-          {CITIES.map((city) => (
+          {/* Mobile view — controlled by showAll */}
+          {visibleCities.map((city) => (
             <div
               key={city.name}
-              className="flex w-full sm:w-[110px] md:w-[160px] flex-col items-center justify-center gap-2 rounded-[5px] border border-neutral-800 bg-neutral-900/60 px-5 py-5 transition-colors hover:border-[#ff5a2a]/40 hover:bg-neutral-900"
+              className="flex sm:hidden w-full flex-col items-center justify-center gap-2 rounded-[5px] border border-neutral-800 bg-neutral-900/60 px-5 py-5 transition-colors hover:border-[#ff5a2a]/40 hover:bg-neutral-900"
             >
               <city.Icon className="h-12 w-12" />
               <span className="text-[15px] font-medium text-[#ff5a2a]">
@@ -85,6 +96,43 @@ export default function ScalingOpportunities() {
               </span>
             </div>
           ))}
+
+          {/* Desktop view — always show all, hidden on mobile */}
+          {CITIES.map((city) => (
+            <div
+              key={`desktop-${city.name}`}
+              className="hidden sm:flex w-full sm:w-[110px] md:w-[160px] flex-col items-center justify-center gap-2 rounded-[5px] border border-neutral-800 bg-neutral-900/60 px-5 py-5 transition-colors hover:border-[#ff5a2a]/40 hover:bg-neutral-900"
+            >
+              <city.Icon className="h-12 w-12" />
+              <span className="text-[15px] font-medium text-[#ff5a2a]">
+                {city.name}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/* View All / Show Less — mobile only */}
+        <div className="mt-6 sm:hidden">
+          <button
+            onClick={() => setShowAll((prev) => !prev)}
+            className="inline-flex items-center gap-2 rounded-md border border-[#ff5a2a]/60 bg-neutral-900 px-6 py-2.5 text-sm font-semibold text-[#ff5a2a] transition hover:bg-[#ff5a2a]/10 active:scale-95"
+          >
+            {showAll ? (
+              <>
+                Show Less
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M4 10l4-4 4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </>
+            ) : (
+              <>
+                View All {CITIES.length} Cities
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </>
+            )}
+          </button>
         </div>
       </div>
     </section>
