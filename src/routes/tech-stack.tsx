@@ -1,10 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { SectionShell, VERTICALS } from "@/components/SectionShell";
-import { Cpu, Activity, Cloud, Code2 } from "lucide-react";
 import FooterSection from "@/components/FooterSection";
 import techImage from "../../assets/images/Fleet-Management-Dashboard.png";
-
+import FigmaCpu from "../../assets/logo/figma-cpu";
+import FigmaCloud from "../../assets/logo/figma-cloud";
+import FigmaTelematics from "../../assets/logo/figma-telematics";
+import FigmaOpenApi from "../../assets/logo/figma-openapi";
 export const Route = createFileRoute("/tech-stack")({
   head: () => ({
     meta: [
@@ -81,44 +83,39 @@ function TechPage() {
         >
           {/* Pill tag */}
           <div
-            className="inline-flex items-center gap-2 w-fit rounded-full border border-white/10 px-3 py-1 text-xs uppercase tracking-[0.2em]"
+            className="inline-flex items-center gap-2 w-fit px-3 py-1 text-md uppercase tracking-[0.2em]"
             style={{ color: v.accent }}
           >
-            <span
-              className="h-1.5 w-1.5 rounded-full"
-              style={{ background: v.accent }}
-            />
             {v.tag}
           </div>
 
           {/* Page title */}
           <h1
-            className="text-3xl md:text-4xl font-normal leading-snug text-white"
+            className="text-3xl md:text-[40px] font-normal leading-snug text-white"
             style={{ fontFamily: "Sora, sans-serif" }}
           >
             {v.pageTitle} – <span className="text-white">{v.tagline}</span>
           </h1>
 
           {/* Built on edge card */}
-          <div className="glass rounded-2xl p-6 border border-[var(--ev-blue)]">
+          <div className="rounded-2xl p-6 border border-[#47D6FF]">
             <div className="flex items-center gap-2">
-              <Cpu className="h-5 w-5 text-[var(--ev-blue)]" />
-              <span className="font-semibold text-base">Built on edge.</span>
+              <FigmaCpu className="h-5 w-5 text-[var(--ev-blue)]" />
+              <span className="font-bold text-base text-[20px]">
+                Built on edge.
+              </span>
             </div>
-            <p className="mt-3 text-sm text-[var(--footer-text)]">
+            <p className="mt-3 text-[16px] text-[#E4BEB4]">
               A cloud-native platform with first-class IoT primitives. Ship
               features as fast as we ship vehicles.
             </p>
-            <div className="mt-5 space-y-3 text-sm">
+            <div className="mt-5 space-y-3 text-[16px]">
               {[
-                { I: Cloud, t: "Multi-region cloud" },
-                { I: Activity, t: "Realtime telematics" },
-                { I: Code2, t: "Open APIs & SDKs" },
+                { I: FigmaCloud, t: "Multi-region cloud" },
+                { I: FigmaTelematics, t: "Realtime telematics" },
+                { I: FigmaOpenApi, t: "Open APIs & SDKs" },
               ].map((x) => (
-                <div
-                  key={x.t}
-                  className="flex items-center gap-3 rounded-lg border border-border bg-white/5 px-3 py-2"
-                >
+                <div key={x.t} className="flex items-center gap-3  px-3 py-2">
                   <x.I className="h-4 w-4 text-[var(--ev-blue)]" /> {x.t}
                 </div>
               ))}

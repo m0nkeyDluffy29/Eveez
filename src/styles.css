@@ -53,10 +53,12 @@
   --popover: oklch(0.18 0.02 250);
   --popover-foreground: oklch(0.98 0.005 250);
 
-  --primary: #E8461F; /* EV orange */
+  --primary: #e8461f; /* EV orange */
   --primary-foreground: oklch(0.15 0.02 250);
   --secondary: oklch(0.78 0.18 152); /* EV green */
   --secondary-foreground: oklch(0.15 0.02 250);
+  --border-orange: oklch(0.8376 0.0917 36.49);
+  --label-color: oklch(0.8318 0.046 35.15);
 
   --muted: oklch(0.28 0.02 255 / 0.6);
   --muted-foreground: oklch(0.7 0.02 255);
@@ -67,10 +69,10 @@
   --destructive-foreground: oklch(0.98 0.005 250);
   --border: oklch(1 0 0 / 0.08);
   --input: oklch(1 0 0 / 0.1);
-  --ring: #E8461F99;
+  --ring: #e8461f99;
   --nw-orange: oklch(0.683 0.2091 36.11);
 
-  --ev-orange: #E8461F;
+  --ev-orange: #e8461f;
   --ev-green: oklch(0.78 0.18 152);
   --ev-glow: oklch(0.95 0.05 90);
   --ev-blue: oklch(0.8173 0.1313 221.24);
@@ -105,11 +107,7 @@
 /* === Cinematic background === */
 .bg-cinematic {
   background:
-    radial-gradient(
-      1200px 600px at 15% 10%,
-      #E8461F2E,
-      transparent 60%
-    ),
+    radial-gradient(1200px 600px at 15% 10%, #e8461f2e, transparent 60%),
     radial-gradient(
       1000px 600px at 85% 90%,
       oklch(0.78 0.18 152 / 0.18),
@@ -175,7 +173,7 @@
   padding: 1px;
   background: linear-gradient(
     135deg,
-    var(--accent-color, #E8461F99),
+    var(--accent-color, #e8461f99),
     transparent 50%,
     oklch(0.78 0.18 152 / 0.4)
   );
@@ -200,7 +198,7 @@
 }
 
 .glow-orange {
-  box-shadow: 0 0 60px -10px #E8461F99;
+  box-shadow: 0 0 60px -10px #e8461f99;
 }
 .glow-green {
   box-shadow: 0 0 60px -10px oklch(0.78 0.18 152 / 0.6);
@@ -219,7 +217,8 @@
   animation: float-y 6s ease-in-out infinite;
 }
 .puzzle-float {
-  animation: float-y var(--float-dur, 5s) ease-in-out infinite var(--float-delay, 0s);
+  animation: float-y var(--float-dur, 5s) ease-in-out infinite
+    var(--float-delay, 0s);
 }
 
 @keyframes streak {
@@ -270,11 +269,7 @@
   width: 380px;
   height: 380px;
   border-radius: 9999px;
-  background: radial-gradient(
-    closest-side,
-    #E8461F2E,
-    transparent 70%
-  );
+  background: radial-gradient(closest-side, #e8461f2e, transparent 70%);
   mix-blend-mode: screen;
   transform: translate(-50%, -50%);
   z-index: 5;

@@ -34,10 +34,10 @@ function ChargingPage() {
           className="rounded-2xl overflow-hidden bg-zinc-900 border border-white/10"
         >
           <div className="px-4 pt-4 pb-2">
-            <p className="text-[10px] uppercase tracking-widest text-white/40">
+            <p className="text-[12px] uppercase tracking-widest text-[#E4BEB4]">
               Live Network
             </p>
-            <p className="text-sm font-medium text-white/80 mt-0.5">
+            <p className="text-md font-bold text-white/80 mt-0.5">
               Charging in motion
             </p>
           </div>
@@ -57,37 +57,31 @@ function ChargingPage() {
         >
           {/* Pill tag */}
           <div
-            className="inline-flex items-center gap-2 w-fit rounded-full border border-white/10 px-3 py-1 text-xs uppercase tracking-[0.2em]"
+            className="inline-flex items-center gap-2 w-fit rounded-full px-3 py-1 text-md uppercase tracking-[0.2em]"
             style={{ color: v.accent }}
           >
-            <span
-              className="h-1.5 w-1.5 rounded-full"
-              style={{ background: v.accent }}
-            />
             {v.tag}
           </div>
 
           {/* Page title */}
           <h1
-            className="text-3xl md:text-4xl font-normal leading-snug text-white"
+            className="text-3xl md:text-[40px] font-normal leading-snug text-white"
             style={{ fontFamily: "Sora, sans-serif" }}
           >
             {v.pageTitle} – <span className="text-white">{v.tagline}</span>
           </h1>
 
           {/* DC fast card */}
-          <div className="rounded-2xl p-6 border ">
+          <div className="rounded-[16px] p-6 border ">
             <div className="flex items-center gap-2">
               <Zap className="h-5 w-5 text-[var(--ev-green)]" />
-              <span className="font-semibold text-base">
-                DC fast. Universal.
-              </span>
+              <span className="font-bold text-base">DC fast. Universal.</span>
             </div>
-            <p className="mt-3 text-sm text-[var(--footer-text)]">
+            <p className="mt-3 text-sm text-[#E4BEB4]">
               CCS2 + Bharat DC-001, smart load balancing, and dynamic pricing —
               all behind one tap of the EVeez app.
             </p>
-            <ul className="mt-5 space-y-3 text-sm">
+            <ul className="mt-5 space-y-3 text-sm text-[#E5E1E4]">
               {[
                 "Up to 120kW DC",
                 "Smart queue & reserve",
@@ -109,9 +103,9 @@ function ChargingPage() {
               { l: "Stations Live", v: "480" },
               { l: "kWh Delivered", v: "9.4M" },
             ].map((s) => (
-              <div key={s.l} className="rounded-xl border border-white/10 p-4">
-                <div className="text-xl font-semibold">{s.v}</div>
-                <div className="text-[11px] uppercase tracking-widest text-muted-foreground mt-1">
+              <div key={s.l} className="p-4">
+                <div className="text-[24px] font-bold text-center">{s.v}</div>
+                <div className="text-[10px] uppercase tracking-widest text-[#E4BEB4] mt-1 text-center">
                   {s.l}
                 </div>
               </div>

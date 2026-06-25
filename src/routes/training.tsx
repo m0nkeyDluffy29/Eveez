@@ -3,6 +3,9 @@ import { motion } from "framer-motion";
 import { SectionShell, VERTICALS } from "@/components/SectionShell";
 import { GraduationCap, Users, Award } from "lucide-react";
 import FooterSection from "@/components/FooterSection";
+import FigmaTechnician from "../../assets/logo/figma-technician";
+import FigmaOperator from "../../assets/logo/figma-operator";
+import FigmaCertificate from "../../assets/logo/figma-certificate";
 
 export const Route = createFileRoute("/training")({
   head: () => ({
@@ -23,31 +26,31 @@ function TrainingPage() {
 
   const tracks = [
     {
-      I: GraduationCap,
+      I: FigmaTechnician,
       t: "EV Technician",
       w: "12 Weeks",
       d: "Battery, motor, controller diagnostics.",
-      borderColor: "border-[var(--ev-orange)]",
-      iconColor: "text-[var(--ev-orange)]",
-      enrollColor: "text-[var(--ev-orange)]",
+      borderColor: "#FFB5A0",
+      iconColor: "#FFB5A0",
+      enrollColor: "#FFB5A0",
     },
     {
-      I: Users,
+      I: FigmaOperator,
       t: "Fleet Operator",
       w: "6 Weeks",
       d: "Operations, telematics, depot management.",
-      borderColor: "border-[var(--ev-green)]",
-      iconColor: "text-[var(--ev-green)]",
-      enrollColor: "text-[var(--ev-green)]",
+      borderColor: "#7DFFA2",
+      iconColor: "#7DFFA2",
+      enrollColor: "#7DFFA2",
     },
     {
-      I: Award,
+      I: FigmaCertificate,
       t: "Trainer Certification",
       w: "4 Weeks",
       d: "Train the trainers — accredited curriculum.",
-      borderColor: "border-cyan-400",
-      iconColor: "text-cyan-400",
-      enrollColor: "text-cyan-400",
+      borderColor: "#47D6FF",
+      iconColor: "#47D6FF",
+      enrollColor: "#47D6FF",
     },
   ];
 
@@ -69,19 +72,15 @@ function TrainingPage() {
       >
         {/* Pill tag */}
         <div
-          className="inline-flex items-center gap-2 w-fit rounded-full border border-white/10 px-3 py-1 text-xs uppercase tracking-[0.2em]"
+          className="inline-flex items-center gap-2 w-fit px-3 py-1 text-[16px] uppercase tracking-[0.2em]"
           style={{ color: v.accent }}
         >
-          <span
-            className="h-1.5 w-1.5 rounded-full"
-            style={{ background: v.accent }}
-          />
           {v.tag}
         </div>
 
         {/* Page title */}
         <h1
-          className="text-3xl md:text-4xl font-normal leading-snug text-white"
+          className="text-3xl md:text-[40px] font-normal leading-snug text-white"
           style={{ fontFamily: "Sora, sans-serif" }}
         >
           {v.pageTitle} – <span className="text-white">{v.tagline}</span>
@@ -96,17 +95,23 @@ function TrainingPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.08, duration: 0.6 }}
-            className={`glass rounded-2xl p-6 border ${t.borderColor} flex flex-col gap-3`}
+            className="glass rounded-2xl p-6 flex flex-col gap-3"
+            style={{ border: `1px solid ${t.borderColor}` }}
           >
-            <t.I className={`h-6 w-6 ${t.iconColor}`} />
+            <t.I className="h-6 w-6" style={{ color: t.iconColor }} />
             <div>
-              <div className="text-base font-semibold text-white">{t.t}</div>
-              <div className="text-[10px] uppercase tracking-[0.2em] text-[var(--footer-text)] mt-0.5">
+              <div className="text-[18px] font-bold text-white">{t.t}</div>
+              <div className="text-[12px] uppercase tracking-[0.2em] text-[#E4BEB4] mt-2">
                 {t.w}
               </div>
             </div>
-            <p className="text-sm text-[var(--footer-text)]">{t.d}</p>
-            <span className={`text-sm mt-auto ${t.enrollColor}`}>Enroll →</span>
+            <p className="text-sm text-[#E4BEB4]">{t.d}</p>
+            <span
+              className="text-[12px] mt-auto font-bold"
+              style={{ color: t.enrollColor }}
+            >
+              Enroll →
+            </span>
           </motion.div>
         ))}
       </div>
@@ -124,10 +129,10 @@ function TrainingPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 + i * 0.07, duration: 0.6 }}
-            className="glass rounded-2xl p-6"
+            className="py-[20px] px-[20px] bg-neutral-900 rounded-[16px] text-center"
           >
-            <div className="text-3xl font-semibold text-white">{s.v}</div>
-            <div className="text-[10px] uppercase tracking-widest text-muted-foreground mt-2">
+            <div className="text-[30px] font-bold text-white">{s.v}</div>
+            <div className="text-[10px] uppercase tracking-widest text-[#E4BEB4] mt-2">
               {s.l}
             </div>
           </motion.div>
